@@ -44,7 +44,7 @@
 											</div>
 											<div class="modal-body">
 												<div class="form-group">
-													<label>Devisi</label>
+													<label>Divisi</label>
 													<select class="form-control" name="divisi" required>
 														<option value="">--Pilih--</option>
 														<?php
@@ -114,7 +114,7 @@
 							<thead>
 								<tr>
 									<th width="1%">No</th>
-									<th>Devisi</th>
+									<th>Divisi</th>
 									<th>NIP</th>
 									<th>Nama</th>
 									<th>Kontak</th>
@@ -176,7 +176,7 @@
 															</div>
 															<div class="modal-body">
 																<div class="form-group">
-																	<label>Devisi</label>
+																	<label>Divisi</label>
 																	<select class="form-control" name="divisi" required>
 																		<option value="">--Pilih--</option>
 																		<?php

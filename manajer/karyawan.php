@@ -32,7 +32,7 @@
 							<thead>
 								<tr>
 									<th width="1%">No</th>
-									<th>Devisi</th>
+									<th>Divisi</th>
 									<th>NIP</th>
 									<th>Nama</th>
 									<th>Kontak</th>

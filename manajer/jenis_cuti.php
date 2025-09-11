@@ -47,11 +47,11 @@
 
 												<div class="form-group">
 													<label>Jenis Cuti</label>
-													<input type="text" name="jenis" required="required" class="form-control" placeholder="Nama Devisi">
+													<input type="text" name="jenis" required="required" class="form-control" placeholder="Nama Divisi">
 												</div>	
 												<div class="form-group">
 													<label>Jumlah Cuti</label>
-													<input type="number" name="jumlah" required="required" class="form-control" placeholder="Nama Devisi">
+													<input type="number" name="jumlah" required="required" class="form-control" placeholder="Nama Divisi">
 												</div>												
 											</div>
 											<div class="modal-footer">
@@ -80,26 +80,26 @@
 							<tbody>
 								<?php
 								$no=1;
-								$data = mysqli_query($koneksi,"select * from tbl_jenis_cuti");
+								$data = mysqli_query($koneksi,"select * from jenis_cuti");
 								while($d = mysqli_fetch_array($data)){
 									?>
 									<tr>
 										<td><?php echo $no++; ?></td>
-										<td><?php echo $d['jenis_nama'] ?></td>
-										<td><?php echo $d['jenis_jumlah']." Hari" ?></td>
+										<td><?php echo $d['jenis_cuti_name'] ?></td>
+										<td><?php echo $d['jenis_cuti_jumlah']." Hari" ?></td>
 										<td>
 											<center>
-												<button type="button" class="btn btn-warning btn-sm btn-icon" data-toggle="modal" data-target="#edit_jenis_<?php echo $d['jenis_id'] ?>">
+												<button type="button" class="btn btn-warning btn-sm btn-icon" data-toggle="modal" data-target="#edit_jenis_<?php echo $d['jenis_cuti_id'] ?>">
 													<i class="fas fa-cog"></i>
 												</button> 
 
-												<button type="button" class="btn btn-danger btn-sm btn-icon" data-toggle="modal" data-target="#hapus_jenis_<?php echo $d['jenis_id'] ?>">
+												<button type="button" class="btn btn-danger btn-sm btn-icon" data-toggle="modal" data-target="#hapus_jenis_<?php echo $d['jenis_cuti_id'] ?>">
 													<i class="fas fa-trash"></i>
 												</button> 
 											</center>
 
 											<form action="jenis_cuti_update.php" method="post" enctype="multipart/form-data">
-												<div class="modal fade" id="edit_jenis_<?php echo $d['jenis_id'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+												<div class="modal fade" id="edit_jenis_<?php echo $d['jenis_cuti_id'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 													<div class="modal-dialog" role="document">
 														<div class="modal-content">
 															<div class="modal-header">
@@ -113,12 +113,12 @@
 
 																<div class="form-group">
 																	<label>Jenis Cuti</label>
-																	<input type="hidden" name="id" value="<?php echo $d['jenis_id'] ?>">
-																	<input type="text" name="jenis" required="required" value="<?php echo $d['jenis_nama'] ?>" class="form-control" placeholder="Nama Devisi">
+																	<input type="hidden" name="id" value="<?php echo $d['jenis_cuti_id'] ?>">
+																	<input type="text" name="jenis" required="required" value="<?php echo $d['jenis_cuti_name'] ?>" class="form-control" placeholder="Nama Divisi">
 																</div>	
 																<div class="form-group">
 																	<label>Jumlah Cuti</label>
-																	<input type="number" value="<?php echo $d['jenis_jumlah'] ?>" name="jumlah" required="required" class="form-control" placeholder="Nama Devisi">
+																	<input type="number" value="<?php echo $d['jenis_cuti_jumlah'] ?>" name="jumlah" required="required" class="form-control" placeholder="Nama Divisi">
 																</div>																	
 															</div>
 															<div class="modal-footer">
@@ -132,7 +132,7 @@
 
 
 											<!-- modal hapus -->
-											<div class="modal fade" id="hapus_jenis_<?php echo $d['jenis_id'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+											<div class="modal fade" id="hapus_jenis_<?php echo $d['jenis_cuti_id'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 												<div class="modal-dialog" role="document">
 													<div class="modal-content">
 														<div class="modal-header">
@@ -147,7 +147,7 @@
 														</div>
 														<div class="modal-footer">
 															<button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-															<a href="jenis_cuti_hapus.php?id=<?php echo $d['jenis_id'] ?>" class="btn btn-primary">Hapus</a>
+															<a href="jenis_cuti_hapus.php?id=<?php echo $d['jenis_cuti_id'] ?>" class="btn btn-primary">Hapus</a>
 														</div>
 													</div>
 												</div>

@@ -27,11 +27,11 @@
             <div class="small-box bg-info">
               <div class="inner">
                 <?php
-                $divisi = mysqli_query($koneksi,"select * from tbl_divisi");
+                $divisi = mysqli_query($koneksi,"select * from divisi");
                 $dv = mysqli_num_rows($divisi);
                  ?>
                 <h3><?php echo $dv ?></h3>
-                <p>Total Devisi</p>
+                <p>Total Divisi</p>
               </div>
               <div class="icon">
                 <i class="ion ion-pie-graph"></i>
@@ -44,7 +44,7 @@
             <div class="small-box bg-success">
               <div class="inner">
                  <?php
-                $jenis_cuti = mysqli_query($koneksi,"select * from tbl_jenis_cuti");
+                $jenis_cuti = mysqli_query($koneksi,"select * from jenis_cuti");
                 $jc = mysqli_num_rows($jenis_cuti);
                  ?>
                 <h3><?php echo $jc ?></h3>                
@@ -61,7 +61,7 @@
             <div class="small-box bg-warning">
               <div class="inner">
                <?php
-               $supervisor = mysqli_query($koneksi,"select * from tbl_supervisor");
+               $supervisor = mysqli_query($koneksi,"select * from user where role_id=2");
                $sv = mysqli_num_rows($supervisor);
                ?>
                <h3><?php echo $sv ?></h3>
@@ -78,7 +78,7 @@
             <div class="small-box bg-danger">
               <div class="inner">
                 <?php
-                $karyawan = mysqli_query($koneksi,"select * from tbl_karyawan");
+                $karyawan = mysqli_query($koneksi,"select * from user where role_id=1");
                 $kr = mysqli_num_rows($karyawan);
                 ?>
                 <h3><?php echo $kr ?></h3>
@@ -95,7 +95,7 @@
             <div class="small-box bg-success">
               <div class="inner">
                 <?php
-                $ctm = mysqli_query($koneksi,"select * from cuti where supervisor_status='Terima'");
+                $ctm = mysqli_query($koneksi,"select * from cuti where manajer_dtatus='Terima'");
                 $c = mysqli_num_rows($ctm);
                 ?>
                 <h3><?php echo $c ?></h3>
@@ -112,7 +112,7 @@
             <div class="small-box bg-danger">
               <div class="inner">
                 <?php
-                $ctt = mysqli_query($koneksi,"select * from cuti where supervisor_status='Tolak'");
+                $ctt = mysqli_query($koneksi,"select * from cuti where manajer_dtatus='Tolak'");
                 $ctx = mysqli_num_rows($ctt);
                 ?>
                 <h3><?php echo $ctx ?></h3>

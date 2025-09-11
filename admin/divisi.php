@@ -6,12 +6,12 @@
 		<div class="container-fluid">
 			<div class="row mb-2">
 				<div class="col-sm-6">
-					<h1>Devisi</h1>
+					<h1>Divisi</h1>
 				</div>
 				<div class="col-sm-6">
 					<ol class="breadcrumb float-sm-right">
 						<li class="breadcrumb-item"><a href="index.php">Home</a></li>
-						<li class="breadcrumb-item active">Data Devisi</li>
+						<li class="breadcrumb-item active">Data Divisi</li>
 					</ol>
 				</div>
 			</div>
@@ -25,19 +25,19 @@
 
 				<div class="card">
 					<div class="card-header">
-						<h3 class="card-title">Data Devisi</h3>
+						<h3 class="card-title">Data Divisi</h3>
 						<div class="float-right">
-							<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addDevisi">
+							<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addDivisi">
 								<i class="fa fa-plus"></i> &nbsp Tambah
 							</button>
 
 
 							<form action="divisi_act.php" method="post" enctype="multipart/form-data">
-								<div class="modal fade" id="addDevisi" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+								<div class="modal fade" id="addDivisi" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 									<div class="modal-dialog" role="document">
 										<div class="modal-content">
 											<div class="modal-header">
-												<h5 class="modal-title" id="exampleModalLabel">Tambah Data Devisi</h5>
+												<h5 class="modal-title" id="exampleModalLabel">Tambah Data Divisi</h5>
 												<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 													<span aria-hidden="true">&times;</span>
 												</button>
@@ -46,8 +46,8 @@
 											<div class="modal-body">
 
 												<div class="form-group">
-													<label>Nama Devisi</label>
-													<input type="text" name="nama" required="required" class="form-control" placeholder="Nama Devisi">
+													<label>Nama Divisi</label>
+													<input type="text" name="nama" required="required" class="form-control" placeholder="Nama Divisi">
 												</div>												
 											</div>
 											<div class="modal-footer">
@@ -68,19 +68,19 @@
 							<thead>
 								<tr>
 									<th width="1%">Nomor</th>
-									<th>Nama Devisi</th>									
+									<th>Nama Divisi</th>									
 									<th width="10%">Opsi</th>
 								</tr>
 							</thead>
 							<tbody>
 								<?php
 								$no=1;
-								$data = mysqli_query($koneksi,"select * from tbl_divisi");
+								$data = mysqli_query($koneksi,"select * from divisi");
 								while($d = mysqli_fetch_array($data)){
 									?>
 									<tr>
 										<td><?php echo $no++; ?></td>
-										<td><?php echo $d['divisi_nama'] ?></td>
+										<td><?php echo $d['divisi_name'] ?></td>
 										<td>
 											<center>
 												<button type="button" class="btn btn-warning btn-sm btn-icon" data-toggle="modal" data-target="#edit_divisi_<?php echo $d['divisi_id'] ?>">
@@ -97,7 +97,7 @@
 													<div class="modal-dialog" role="document">
 														<div class="modal-content">
 															<div class="modal-header">
-																<h5 class="modal-title" id="exampleModalLabel">Edit Data Devisi</h5>
+																<h5 class="modal-title" id="exampleModalLabel">Edit Data Divisi</h5>
 																<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 																	<span aria-hidden="true">&times;</span>
 																</button>
@@ -106,9 +106,9 @@
 															<div class="modal-body">
 
 																<div class="form-group">
-																	<label>Nama Devisi</label>
+																	<label>Nama Divisi</label>
 																	<input type="hidden" name="id" value="<?php echo $d['divisi_id'] ?>">
-																	<input type="text" name="nama" value="<?php echo $d['divisi_nama'] ?>" required="required" class="form-control" placeholder="Nama Devisi">
+																	<input type="text" name="nama" value="<?php echo $d['divisi_name'] ?>" required="required" class="form-control" placeholder="Nama Divisi">
 																</div>																
 															</div>
 															<div class="modal-footer">

@@ -60,7 +60,7 @@
 
               <ul class="list-group list-group-unbordered mb-3">
                 <li class="list-group-item">
-                  <b>Devisi</b> <a class="float-right"><?php echo $d['divisi_nama'] ?></a>
+                  <b>Divisi</b> <a class="float-right"><?php echo $d['divisi_nama'] ?></a>
                 </li>
                 <li class="list-group-item">
                   <b>Cuti</b> <a class="float-right"><?php echo $d['jenis_nama'] ?></a>

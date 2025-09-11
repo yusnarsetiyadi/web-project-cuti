@@ -50,14 +50,14 @@
 								<tbody>
 									<?php
 									$no=1;									
-									$data = mysqli_query($koneksi,"select * from cuti,tbl_karyawan,tbl_divisi where user_id=karyawan_id and divisi_id=divisi_id");
+									$data = mysqli_query($koneksi,"select user.name as karyawan_nama, divisi.divisi_name as divisi_nama, cuti.* from cuti join user on cuti.user_id = user.id join divisi on cuti.divisi_id = divisi.divisi_id");
 									while($d = mysqli_fetch_array($data)){
 										?>
 										<tr>
 											<td><?php echo $no++; ?></td>
 											<td>
 												<b>Nama : </b><?php echo $d['karyawan_nama'] ?><br>
-												<b>Devisi : </b><?php echo $d['divisi_nama'] ?>
+												<b>Divisi : </b><?php echo $d['divisi_nama'] ?>
 											</td>
 											<td>
 												<b>Request : </b><?php echo date('d-m-Y', strtotime($d['tanggal_cuti'])) ?><br>

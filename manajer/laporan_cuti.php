@@ -55,7 +55,7 @@
 											<td><?php echo $no++; ?></td>
 											<td>
 												<b>Nama : </b><?php echo $d['karyawan_nama'] ?><br>
-												<b>Devisi : </b><?php echo $d['divisi_nama'] ?>
+												<b>Divisi : </b><?php echo $d['divisi_nama'] ?>
 											</td>
 											<td>
 												<b>Request : </b><?php echo date('d-m-Y', strtotime($d['tanggal_cuti'])) ?><br>

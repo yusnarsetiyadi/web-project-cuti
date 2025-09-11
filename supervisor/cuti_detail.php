@@ -59,7 +59,7 @@
 
               <ul class="list-group list-group-unbordered mb-3">
                 <li class="list-group-item">
-                  <b>Devisi</b> <a class="float-right"><?php echo $d['divisi_nama'] ?></a>
+                  <b>Divisi</b> <a class="float-right"><?php echo $d['divisi_nama'] ?></a>
                 </li>
                 <li class="list-group-item">
                   <b>Cuti</b> <a class="float-right"><?php echo $d['jenis_nama'] ?></a>
@@ -80,7 +80,7 @@
           <div class="card">
 
             <div class="card-header">
-              <h3 class="card-title">Data Devisi</h3>
+              <h3 class="card-title">Data Divisi</h3>
               <div class="float-right">
                 <a href="cuti.php" class="btn btn-sm btn-warning"><i class="fa fa-minus"></i> Kembali</a>
                

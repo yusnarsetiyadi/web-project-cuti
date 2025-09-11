@@ -24,7 +24,7 @@
 
 				<div class="card">
 					<div class="card-header">
-						<h3 class="card-title">Data Karyawan Devisi Saya</h3>						
+						<h3 class="card-title">Data Karyawan Divisi Saya</h3>						
 					</div>
 					<!-- /.card-header -->
 					<div class="card-body">
@@ -32,7 +32,7 @@
 							<thead>
 								<tr>
 									<th width="1%">No</th>
-									<th>Devisi</th>
+									<th>Divisi</th>
 									<th>NIP</th>
 									<th>Nama</th>
 									<th>Kontak</th>

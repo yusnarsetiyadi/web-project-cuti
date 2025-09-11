@@ -45,7 +45,7 @@
             <td><?php echo $d['karyawan_jabatan']; ?></td>
         </tr> 
          <tr>
-            <td>Devisi</td>
+            <td>Divisi</td>
             <th>:</th>
             <td><?php echo $d['divisi_nama']; ?></td>
         </tr>    
@@ -89,7 +89,7 @@
 
     <div class="tandatangan" >            
      <p><?php echo $d['supervisor_status'] ?><br>
-          <?php echo "Devisi ".$d['divisi_nama'] ?></p>
+          <?php echo "Divisi ".$d['divisi_nama'] ?></p>
           <img style="width:70px; height: 70px;" src="../gambar/tanda_tangan/<?php echo $d['supervisor_tanda_tangan'] ?>"> 
           <br/>      
       <?php echo $d['supervisor_nama']; ?>  

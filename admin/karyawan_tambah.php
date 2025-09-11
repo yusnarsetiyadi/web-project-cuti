@@ -67,7 +67,7 @@
               	<!-- /.col -->
               	<div class="col-md-6">
               		<div class="form-group">
-              			<label>Devisi</label>
+              			<label>Divisi</label>
               			<select class="form-control" name="divisi" required>
               				<option value="">--Pilih--</option>
               				<?php 

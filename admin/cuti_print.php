@@ -21,8 +21,8 @@
 <body style="padding: 10px;">
  <?php
  include '../koneksi.php';
- $idcuti = $_GET['id'];
- $data = mysqli_query($koneksi,"select * from cuti, tbl_karyawan, tbl_manajer, tbl_divisi where cuti_id='$idcuti' and user_id=karyawan_id and karyawan_divisi=divisi_id and manajer_id=manajer_id");
+ $idcuti = $_GET['cuti_id'];
+ $data = mysqli_query($koneksi,"select user.name as karyawan_nama, user.nip as karyawan_nip, role.role_name as karyawan_jabatan, user.kontak as karyawan_kontak, divisi.divisi_name as divisi_nama, cuti.*, user_manajer.name as manajer_nama, user_manajer.nip as manajer_nip from cuti join user on cuti.user_id = user.id join role on user.role_id = role.role_id join divisi on cuti.divisi_id = divisi.divisi_id join jenis_cuti on cuti.jenis_cuti_id = jenis_cuti.jenis_cuti_id join user as user_manajer on cuti.manajer_id = user_manajer.id where cuti_id=$idcuti");
  $d = mysqli_fetch_assoc($data);     
  ?>
 

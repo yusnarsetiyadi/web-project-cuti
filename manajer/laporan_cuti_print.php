@@ -24,7 +24,7 @@
     <thead>
         <tr>
             <th width="1%">No</th>
-            <th>Devisi</th>
+            <th>Divisi</th>
             <th>NIP / Nama</th>
             <th>Kontak</th>
             <th>Tanggal request</th>
