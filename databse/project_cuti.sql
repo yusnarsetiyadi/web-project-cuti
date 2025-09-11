@@ -24,10 +24,10 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tbl_admin`
+-- Struktur dari tabel `admin`
 --
 
-CREATE TABLE `tbl_admin` (
+CREATE TABLE `admin` (
   `id` int(11) NOT NULL,
   `name` varchar(50) NOT NULL,
   `kontak` varchar(15) NOT NULL,
@@ -37,43 +37,43 @@ CREATE TABLE `tbl_admin` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `tbl_admin`
+-- Dumping data untuk tabel `admin`
 --
 
-INSERT INTO `tbl_admin` (`id`, `name`, `kontak`, `username`, `password`, `foto`) VALUES
+INSERT INTO `admin` (`id`, `name`, `kontak`, `username`, `password`, `foto`) VALUES
 (1, 'admin saya', '082272242022', 'admin', '21232f297a57a5a743894a0e4a801fc3', 'foto.png'),
 (6, 'jaconb', '09281982192', 'vepes', 'f3ed11bbdb94fd9ebdefbaf646ab94d3', 'foto.png');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tbl_cuti`
+-- Struktur dari tabel `cuti`
 --
 
-CREATE TABLE `tbl_cuti` (
+CREATE TABLE `cuti` (
   `cuti_id` int(11) NOT NULL,
-  `cuti_divisi` int(11) NOT NULL,
-  `cuti_jenis` int(11) NOT NULL,
-  `cuti_pegawai` int(11) NOT NULL,
-  `cuti_tanggal` date NOT NULL,
-  `cuti_dari` date NOT NULL,
-  `cuti_sampai` date NOT NULL,
-  `cuti_jumlah` int(11) NOT NULL,
-  `cuti_alasan` varchar(100) NOT NULL,
-  `cuti_alamat` varchar(100) DEFAULT NULL,
-  `cuti_supervisor` int(11) DEFAULT NULL,
-  `cuti_status_supervisor` varchar(100) DEFAULT NULL,
-  `cuti_keterangan_supervisor` varchar(100) DEFAULT NULL,
-  `cuti_manajer` int(11) DEFAULT NULL,
-  `cuti_status_manajer` varchar(100) DEFAULT NULL,
-  `cuti_keterangan_manajer` varchar(100) DEFAULT NULL
+  `divisi_id` int(11) NOT NULL,
+  `jenis_cuti_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `tanggal_cuti` date NOT NULL,
+  `tanggal_mulai` date NOT NULL,
+  `tanggal_selesai` date NOT NULL,
+  `jumlah_cuti` int(11) NOT NULL,
+  `alasan_cuti` varchar(100) NOT NULL,
+  `alamat_cuti` varchar(100) DEFAULT NULL,
+  `supervisor_id` int(11) DEFAULT NULL,
+  `supervisor_status` varchar(100) DEFAULT NULL,
+  `supervisor_keterangan` varchar(100) DEFAULT NULL,
+  `manajer_id` int(11) DEFAULT NULL,
+  `manajer_status` varchar(100) DEFAULT NULL,
+  `manajer_keterangan` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `tbl_cuti`
+-- Dumping data untuk tabel `cuti`
 --
 
-INSERT INTO `tbl_cuti` (`cuti_id`, `cuti_divisi`, `cuti_jenis`, `cuti_pegawai`, `cuti_tanggal`, `cuti_dari`, `cuti_sampai`, `cuti_jumlah`, `cuti_alasan`, `cuti_alamat`, `cuti_supervisor`, `cuti_status_supervisor`, `cuti_keterangan_supervisor`, `cuti_manajer`, `cuti_status_manajer`, `cuti_keterangan_manajer`) VALUES
+INSERT INTO `cuti` (`cuti_id`, `divisi_id`, `jenis_cuti_id`, `user_id`, `tanggal_cuti`, `tanggal_mulai`, `tanggal_selesai`, `jumlah_cuti`, `alasan_cuti`, `alamat_cuti`, `supervisor_id`, `supervisor_status`, `supervisor_keterangan`, `manajer_id`, `manajer_status`, `manajer_keterangan`) VALUES
 (1, 5, 2, 1, '2022-06-02', '2022-06-05', '2022-06-07', 2, 'acara dirumah', 'jalan kenari nomor 5 annur ', 1, 'Terima', 'oke', 1, 'Terima', 'oke');
 
 -- --------------------------------------------------------
@@ -212,15 +212,15 @@ INSERT INTO `tbl_supervisor` (`supervisor_id`, `supervisor_divisi`, `supervisor_
 --
 
 --
--- Indeks untuk tabel `tbl_admin`
+-- Indeks untuk tabel `admin`
 --
-ALTER TABLE `tbl_admin`
+ALTER TABLE `admin`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `tbl_cuti`
+-- Indeks untuk tabel `cuti`
 --
-ALTER TABLE `tbl_cuti`
+ALTER TABLE `cuti`
   ADD PRIMARY KEY (`cuti_id`);
 
 --
@@ -260,15 +260,15 @@ ALTER TABLE `tbl_supervisor`
 --
 
 --
--- AUTO_INCREMENT untuk tabel `tbl_admin`
+-- AUTO_INCREMENT untuk tabel `admin`
 --
-ALTER TABLE `tbl_admin`
+ALTER TABLE `admin`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT untuk tabel `tbl_cuti`
+-- AUTO_INCREMENT untuk tabel `cuti`
 --
-ALTER TABLE `tbl_cuti`
+ALTER TABLE `cuti`
   MODIFY `cuti_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --

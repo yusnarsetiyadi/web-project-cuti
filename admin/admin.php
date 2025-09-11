@@ -90,6 +90,7 @@
 									<th width="1%">Nomor</th>
 									<th>Nama</th>
 									<th>Kontak</th>
+									<th>Email</th>
 									<th>Username</th>
 									<th>Foto</th>
 									<th>Opsi</th>
@@ -98,13 +99,14 @@
 							<tbody>
 								<?php
 								$no=1;
-								$data = mysqli_query($koneksi,"select * from tbl_admin");
+								$data = mysqli_query($koneksi,"select * from admin");
 								while($d = mysqli_fetch_array($data)){
 									?>
 									<tr>
 										<td><?php echo $no++; ?></td>
 										<td><?php echo $d['name'] ?></td>
 										<td><?php echo $d['kontak'] ?></td>
+										<td><?php echo $d['email'] ?></td>
 										<td><?php echo $d['username'] ?></td>                			
 										<td>
 											<?php 
@@ -145,13 +147,17 @@
 															<div class="modal-body">
 
 																<div class="form-group">
-																	<label>Nama Kategori</label>
+																	<label>Nama</label>
 																	<input type="hidden" name="id" value="<?php echo $d['id'] ?>">
 																	<input type="text" name="nama" value="<?php echo $d['name'] ?>" required="required" class="form-control" placeholder="Misal : Ahmed, Medial">
 																</div>
 																<div class="form-group">
 																	<label>Kontak</label>
 																	<input type="number" name="kontak" value="<?php echo $d['kontak'] ?>" required="required" class="form-control" placeholder="Misal : 0822*****">
+																</div>
+																<div class="form-group">
+																	<label>Email</label>
+																	<input type="text" name="email" value="<?php echo $d['email'] ?>" required="required" class="form-control" placeholder="Misal : test@example.com">
 																</div>
 																<div class="form-group">
 																	<label>Username</label>

@@ -79,7 +79,7 @@
           <div class="inner">
             <?php
             $divisi = $_SESSION['divisi'];
-            $cuti = mysqli_query($koneksi,"select * from tbl_cuti where cuti_divisi='$divisi'");
+            $cuti = mysqli_query($koneksi,"select * from cuti where divisi_id='$divisi'");
             $ct = mysqli_num_rows($cuti);
             ?>
             <h3><?php echo $ct ?></h3>

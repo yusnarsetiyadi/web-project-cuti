@@ -95,7 +95,7 @@
             <div class="small-box bg-success">
               <div class="inner">
                 <?php
-                $ctm = mysqli_query($koneksi,"select * from tbl_cuti where cuti_status_supervisor='Terima'");
+                $ctm = mysqli_query($koneksi,"select * from cuti where supervisor_status='Terima'");
                 $c = mysqli_num_rows($ctm);
                 ?>
                 <h3><?php echo $c ?></h3>
@@ -112,7 +112,7 @@
             <div class="small-box bg-danger">
               <div class="inner">
                 <?php
-                $ctt = mysqli_query($koneksi,"select * from tbl_cuti where cuti_status_supervisor='Tolak'");
+                $ctt = mysqli_query($koneksi,"select * from cuti where supervisor_status='Tolak'");
                 $ctx = mysqli_num_rows($ctt);
                 ?>
                 <h3><?php echo $ctx ?></h3>
@@ -129,7 +129,7 @@
             <div class="small-box bg-gradient-primary">
               <div class="inner">
                 <?php
-                $ctb = mysqli_query($koneksi,"select * from tbl_cuti");
+                $ctb = mysqli_query($koneksi,"select * from cuti");
                 $cb = mysqli_num_rows($ctb);
                 ?>
                 <h3><?php echo $cb ?></h3>
@@ -149,7 +149,7 @@
 
         <?php
         $saya = $_SESSION['id'];
-        $data = mysqli_query($koneksi,"select * from tbl_admin  where id='$saya'");
+        $data = mysqli_query($koneksi,"select * from admin  where id='$saya'");
         $d = mysqli_fetch_assoc($data);
         ?>
 

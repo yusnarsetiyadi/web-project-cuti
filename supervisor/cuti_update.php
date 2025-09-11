@@ -6,5 +6,5 @@ $id = $_POST['id'];
 $status = $_POST['status'];
 $keterangan = $_POST['keterangan'];
 
-mysqli_query($koneksi,"update tbl_cuti set cuti_supervisor='$saya', cuti_status_supervisor='$status', cuti_keterangan_supervisor='$keterangan' where cuti_id='$id'");
+mysqli_query($koneksi,"update cuti set supervisor_id='$saya', supervisor_status='$status', supervisor_keterangan='$keterangan' where cuti_id='$id'");
 header("location:cuti.php?alert=status");

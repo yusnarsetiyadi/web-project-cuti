@@ -53,7 +53,7 @@
 											<td>												
 												<?php 
 												// cuti diambil
-												$xx = mysqli_query($koneksi,"select sum(cuti_jumlah) as total from tbl_cuti where cuti_jenis='$jenisid' and cuti_pegawai='$saya' and year(cuti_tanggal)='$tahun'");	
+												$xx = mysqli_query($koneksi,"select sum(jumlah_cuti) as total from cuti where jenis_cuti_id='$jenisid' and user_id='$saya' and year(tanggal_cuti)='$tahun'");	
 												$x = mysqli_fetch_assoc($xx);	
 												echo $x['total']
 
@@ -63,7 +63,7 @@
 											<td>
 												<?php 
 												// sisa cuti
-												$xx = mysqli_query($koneksi,"select sum(cuti_jumlah) as total from tbl_cuti where cuti_jenis='$jenisid' and cuti_pegawai='$saya' and year(cuti_tanggal)='$tahun'");	
+												$xx = mysqli_query($koneksi,"select sum(jumlah_cuti) as total from cuti where jenis_cuti_id='$jenisid' and user_id='$saya' and year(tanggal_cuti)='$tahun'");	
 												$x = mysqli_fetch_assoc($xx);	
 												$digunakan = $x['total'];
 												$diberikan = $d['jenis_jumlah'];

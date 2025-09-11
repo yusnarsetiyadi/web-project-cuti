@@ -22,7 +22,7 @@
  <?php
  include '../koneksi.php';
  $idcuti = $_GET['id'];
- $data = mysqli_query($koneksi,"select * from tbl_cuti, tbl_karyawan, tbl_manajer, tbl_divisi where cuti_id='$idcuti' and cuti_pegawai=karyawan_id and karyawan_divisi=divisi_id and cuti_manajer=manajer_id");
+ $data = mysqli_query($koneksi,"select * from cuti, tbl_karyawan, tbl_manajer, tbl_divisi where cuti_id='$idcuti' and user_id=karyawan_id and karyawan_divisi=divisi_id and manajer_id=manajer_id");
  $d = mysqli_fetch_assoc($data);     
  ?>
 
@@ -95,7 +95,7 @@
         <th colspan="5" style="text-align: left;">III. ALASAN CUTI</th>
     </tr>
     <tr>
-        <td><?php echo $d['cuti_alasan'] ?></td>        
+        <td><?php echo $d['alasan_cuti'] ?></td>        
     </tr>    
 </table>
 <br>
@@ -106,11 +106,11 @@
     </tr>
     <tr>
         <td>Selama</td>        
-        <td><?php echo $d['cuti_jumlah']." Hari" ?></td>        
+        <td><?php echo $d['jumlah_cuti']." Hari" ?></td>        
         <td>Mulai Tanggal</td>        
-        <td><?php echo date('d-m-Y', strtotime($d['cuti_dari'])) ?></td>
+        <td><?php echo date('d-m-Y', strtotime($d['tanggal_mulai'])) ?></td>
         <td>Sampai Tanggal</td>        
-        <td><?php echo date('d-m-Y', strtotime($d['cuti_sampai'])) ?></td>
+        <td><?php echo date('d-m-Y', strtotime($d['tanggal_selesai'])) ?></td>
     </tr>    
 </table>
 <br>
@@ -145,7 +145,7 @@
         <td><?php echo $d['karyawan_kontak'] ?></td>
     </tr>
     <tr>
-        <td colspan="5"><?php echo $d['cuti_alamat'] ?></td>
+        <td colspan="5"><?php echo $d['alamat_cuti'] ?></td>
         <td colspan="2">
             <center>Hormat Saya</center>
             <br>

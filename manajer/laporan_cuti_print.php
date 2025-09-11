@@ -39,7 +39,7 @@
         include '../koneksi.php';
         $divisi = $_SESSION['divisi'];
         $no=1;
-        $data = mysqli_query($koneksi,"select * from tbl_cuti, tbl_divisi,tbl_karyawan, tbl_jenis_cuti, tbl_supervisor where cuti_divisi='$divisi' and cuti_divisi=divisi_id and cuti_jenis=jenis_id and cuti_pegawai=karyawan_id and cuti_supervisor=supervisor_id");
+        $data = mysqli_query($koneksi,"select * from cuti, tbl_divisi,tbl_karyawan, tbl_jenis_cuti, tbl_supervisor where divisi_id='$divisi' and divisi_id=divisi_id and jenis_cuti_id=jenis_id and user_id=karyawan_id and supervisor_id=supervisor_id");
         while($d = mysqli_fetch_array($data)){
             ?>
             <tr>
@@ -47,15 +47,15 @@
                 <td><?php echo $d['divisi_nama'] ?></td>
                 <td><?php echo $d['karyawan_nip']. " /".$d['karyawan_nama'] ?></td>                
                 <td><?php echo $d['karyawan_kontak'] ?></td>
-                <td><?php echo date('d-m-Y', strtotime($d['cuti_tanggal'])) ?></td>
+                <td><?php echo date('d-m-Y', strtotime($d['tanggal_cuti'])) ?></td>
                 <td>
                 	<?php
-                	echo $d['cuti_jumlah']." Hari";
+                	echo $d['jumlah_cuti']." Hari";
                 	?>                	
 
                 </td>    
                 <td><?php echo $d['supervisor_nama'] ?></td>                  
-                <td><?php echo $d['cuti_status_supervisor'] ?></td>                  
+                <td><?php echo $d['supervisor_status'] ?></td>                  
 
             </tr>
             <?php

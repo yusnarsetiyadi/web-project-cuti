@@ -189,23 +189,23 @@
                         <?php
                         $saya = $_SESSION['id'];                  
                         $no=1;
-                        $data = mysqli_query($koneksi,"select * from tbl_cuti, tbl_jenis_cuti where cuti_pegawai='$saya' and cuti_jenis=jenis_id");
+                        $data = mysqli_query($koneksi,"select * from cuti, tbl_jenis_cuti where user_id='$saya' and jenis_cuti_id=jenis_id");
                         while($d = mysqli_fetch_array($data)){
                           ?>
                           <tr>
                             <td><?php echo $no++; ?></td>
                             <td><?php echo $d['jenis_nama'] ?></td> 
-                            <td><?php echo date('d-m-Y', strtotime($d['cuti_tanggal'])) ?></td>
+                            <td><?php echo date('d-m-Y', strtotime($d['tanggal_cuti'])) ?></td>
                             <td>
                               <?php
-                              $x = date("d", strtotime($d['cuti_dari']));
-                              $xx = date("d", strtotime($d['cuti_sampai']));
+                              $x = date("d", strtotime($d['tanggal_mulai']));
+                              $xx = date("d", strtotime($d['tanggal_selesai']));
                               $hasil = abs($x-$xx);
                               echo $hasil." Hari";
                               ?>
                             </td>
-                            <td><?php echo $d['cuti_status_supervisor'] ?></td>
-                            <td><?php echo $d['cuti_status_manajer'] ?></td>
+                            <td><?php echo $d['supervisor_status'] ?></td>
+                            <td><?php echo $d['manajer_status'] ?></td>
 
                           </tr>
                           <?php

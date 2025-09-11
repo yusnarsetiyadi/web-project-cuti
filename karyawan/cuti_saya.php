@@ -43,21 +43,21 @@
 									$tahun = date('Y');
 									$saya = $_SESSION['id'];									
 									$no=1;
-									$data = mysqli_query($koneksi,"select * from tbl_cuti, tbl_jenis_cuti where cuti_pegawai='$saya' and cuti_jenis=jenis_id and year(cuti_tanggal)='$tahun'");
+									$data = mysqli_query($koneksi,"select * from cuti, tbl_jenis_cuti where user_id='$saya' and jenis_cuti_id=jenis_id and year(tanggal_cuti)='$tahun'");
 									while($d = mysqli_fetch_array($data)){
 										?>
 										<tr>
 											<td><?php echo $no++; ?></td>
 											<td><?php echo $d['jenis_nama'] ?></td>	
-											<td><?php echo date('d-m-Y', strtotime($d['cuti_tanggal'])) ?></td>	
-											<td><?php echo date('d-m-Y', strtotime($d['cuti_dari'])) ?></td>	
-											<td><?php echo date('d-m-Y', strtotime($d['cuti_sampai'])) ?></td>	
+											<td><?php echo date('d-m-Y', strtotime($d['tanggal_cuti'])) ?></td>	
+											<td><?php echo date('d-m-Y', strtotime($d['tanggal_mulai'])) ?></td>	
+											<td><?php echo date('d-m-Y', strtotime($d['tanggal_selesai'])) ?></td>	
 											<td>
-												<?php echo $d['cuti_jumlah'] ?> Hari
+												<?php echo $d['jumlah_cuti'] ?> Hari
 											</td>										
 											<td>
 												<?php
-												if($d['cuti_status_manajer']==""){
+												if($d['manajer_status']==""){
 													?>
 													<center>
 														<button type="button" class="btn btn-danger btn-sm btn-icon" data-toggle="modal" data-target="#hapus_cuti_<?php echo $d['cuti_id'] ?>">

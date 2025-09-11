@@ -48,7 +48,7 @@
 									<?php
 									$no=1;	
 									$divisi = $_SESSION['divisi'];								
-									$data = mysqli_query($koneksi,"select * from tbl_cuti,tbl_karyawan,tbl_divisi where cuti_divisi='$divisi' and cuti_pegawai=karyawan_id and cuti_divisi=divisi_id order by cuti_id desc");
+									$data = mysqli_query($koneksi,"select * from cuti,tbl_karyawan,tbl_divisi where divisi_id='$divisi' and user_id=karyawan_id and divisi_id=divisi_id order by cuti_id desc");
 									while($d = mysqli_fetch_array($data)){
 										?>
 										<tr>
@@ -58,17 +58,17 @@
 												<b>Devisi : </b><?php echo $d['divisi_nama'] ?>
 											</td>
 											<td>
-												<b>Request : </b><?php echo date('d-m-Y', strtotime($d['cuti_tanggal'])) ?><br>
-												<b>Mulai : </b><?php echo date('d-m-Y', strtotime($d['cuti_dari'])) ?><br>
-												<b>Akhir : </b><?php echo date('d-m-Y', strtotime($d['cuti_sampai'])) ?>
+												<b>Request : </b><?php echo date('d-m-Y', strtotime($d['tanggal_cuti'])) ?><br>
+												<b>Mulai : </b><?php echo date('d-m-Y', strtotime($d['tanggal_mulai'])) ?><br>
+												<b>Akhir : </b><?php echo date('d-m-Y', strtotime($d['tanggal_selesai'])) ?>
 											</td>												
 											<td>
 												<?php
-												echo $d['cuti_jumlah']." Hari";
+												echo $d['jumlah_cuti']." Hari";
 												?>
 											</td>
-											<td><?php echo $d['cuti_status_supervisor'] ?></td>
-											<td><?php echo $d['cuti_status_manajer'] ?></td>
+											<td><?php echo $d['supervisor_status'] ?></td>
+											<td><?php echo $d['manajer_status'] ?></td>
 										
 										</tr>
 										<?php

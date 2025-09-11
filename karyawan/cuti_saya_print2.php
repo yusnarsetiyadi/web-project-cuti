@@ -12,9 +12,9 @@
      <?php
      include '../koneksi.php';
      $idcuti = $_GET['id'];
-     $data = mysqli_query($koneksi,"select * from tbl_cuti, tbl_karyawan, tbl_manajer, tbl_divisi,tbl_jenis_cuti,tbl_supervisor where cuti_id='$idcuti' and cuti_pegawai=karyawan_id and cuti_divisi=divisi_id and cuti_jenis=jenis_id and cuti_supervisor=supervisor_id and cuti_manajer=manajer_id");
+     $data = mysqli_query($koneksi,"select * from cuti, tbl_karyawan, tbl_manajer, tbl_divisi,tbl_jenis_cuti,tbl_supervisor where cuti_id='$idcuti' and user_id=karyawan_id and divisi_id=divisi_id and jenis_cuti_id=jenis_id and supervisor_id=supervisor_id and manajer_id=manajer_id");
      $d = mysqli_fetch_assoc($data);
-     $idkaryawan = $d['cuti_pegawai'];
+     $idkaryawan = $d['user_id'];
      ?>
 
     <table width="100%">
@@ -61,8 +61,8 @@
             <td>
                <?php
              
-               $tgl1 = strtotime($d['cuti_dari']); 
-               $tgl2 = strtotime($d['cuti_sampai']); 
+               $tgl1 = strtotime($d['tanggal_mulai']); 
+               $tgl2 = strtotime($d['tanggal_selesai']); 
 
                $jarak = $tgl2 - $tgl1;
 
@@ -74,30 +74,30 @@
         <tr>
             <td>Dari Tanggal s/d Tanggal</td>
             <th>:</th>
-            <td><?php echo date('d-m-Y', strtotime($d['cuti_dari'])). " s/d ". date('d-n-Y',strtotime($d['cuti_sampai'])) ?></td>
+            <td><?php echo date('d-m-Y', strtotime($d['tanggal_mulai'])). " s/d ". date('d-n-Y',strtotime($d['tanggal_selesai'])) ?></td>
         </tr> 
         <tr>
             <td>Alasan Cuti</td>
             <th>:</th>
-            <td><?php echo $d['cuti_alasan']; ?></td>
+            <td><?php echo $d['alasan_cuti']; ?></td>
         </tr>
         <tr>
             <td>Alamat Cuti</td>
             <th>:</th>
-            <td><?php echo $d['cuti_alamat']; ?></td>
+            <td><?php echo $d['alamat_cuti']; ?></td>
         </tr>  
        
         <tr>
             <td>Keterangan</td>
             <th>:</th>
-            <td><?php echo $d['cuti_keterangan_supervisor']; ?></td>
+            <td><?php echo $d['supervisor_keterangan']; ?></td>
         </tr>                           
     </table> 
 
   
 
     <div class="tandatangan" >            
-       <p><?php echo $d['cuti_status_supervisor'] ?><br>
+       <p><?php echo $d['supervisor_status'] ?><br>
           <?php echo "Devisi ".$d['divisi_nama'] ?></p>
           <img style="width:70px; height: 70px;" src="../gambar/tanda_tangan/<?php echo $d['supervisor_tanda_tangan'] ?>"> 
           <br/>      

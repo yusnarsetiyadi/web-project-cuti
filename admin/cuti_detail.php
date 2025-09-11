@@ -27,7 +27,7 @@
 
           <?php
           $idcuti = $_GET['id'];
-          $data = mysqli_query($koneksi,"select * from tbl_cuti, tbl_karyawan, tbl_divisi,tbl_jenis_cuti where cuti_id='$idcuti' and cuti_pegawai=karyawan_id and cuti_divisi=divisi_id and cuti_jenis=jenis_id");
+          $data = mysqli_query($koneksi,"select * from cuti, tbl_karyawan, tbl_divisi,tbl_jenis_cuti where cuti_id='$idcuti' and user_id=karyawan_id and divisi_id=divisi_id and jenis_cuti_id=jenis_id");
           $d = mysqli_fetch_assoc($data);
           ?>
 
@@ -65,7 +65,7 @@
                   <b>Cuti</b> <a class="float-right"><?php echo $d['jenis_nama'] ?></a>
                 </li>
                 <li class="list-group-item">
-                  <b>Request</b> <a class="float-right"><?php echo date('d-m-Y', strtotime($d['cuti_tanggal'])) ?></a>
+                  <b>Request</b> <a class="float-right"><?php echo date('d-m-Y', strtotime($d['tanggal_cuti'])) ?></a>
                 </li>               
               </ul>
             </div>
@@ -102,46 +102,46 @@
                         <tr>
                           <th>Mulai Cuti</th>
                           <th>:</th>
-                          <td><?php echo date('d-m-Y', strtotime($d['cuti_dari'])) ?></td>
+                          <td><?php echo date('d-m-Y', strtotime($d['tanggal_mulai'])) ?></td>
                         </tr>
                         <tr>
                           <th>Akhir Cuti</th>
                           <th>:</th>
-                          <td><?php echo date('d-m-Y', strtotime($d['cuti_sampai'])) ?></td>
+                          <td><?php echo date('d-m-Y', strtotime($d['tanggal_selesai'])) ?></td>
                         </tr>
                         <tr>
                           <th>Jumlah</th>
                           <th>:</th>
                           <td>
                            <?php
-                           echo $d['cuti_jumlah']." Hari";
+                           echo $d['jumlah_cuti']." Hari";
                            ?>
                           </td>
                         </tr>
                         <tr>
                           <th>Alasan</th>
                           <th>:</th>
-                          <td><?php echo $d['cuti_alasan'] ?></td>
+                          <td><?php echo $d['alasan_cuti'] ?></td>
                         </tr>
                         <tr>
                           <th>Status Supervisor</th>
                           <th>:</th>
-                          <td><?php echo $d['cuti_status_supervisor'] ?></td>
+                          <td><?php echo $d['supervisor_status'] ?></td>
                         </tr>                        
                         <tr>
                           <th>Keterangan Supervisor</th>
                           <th>:</th>
-                          <td><?php echo $d['cuti_keterangan_supervisor'] ?></td>
+                          <td><?php echo $d['supervisor_keterangan'] ?></td>
                         </tr>
                         <tr>
                           <th>Status Manajer</th>
                           <th>:</th>
-                          <td><?php echo $d['cuti_status_manajer'] ?></td>
+                          <td><?php echo $d['manajer_status'] ?></td>
                         </tr>                        
                         <tr>
                           <th>Keterangan Manajer</th>
                           <th>:</th>
-                          <td><?php echo $d['cuti_keterangan_manajer'] ?></td>
+                          <td><?php echo $d['manajer_keterangan'] ?></td>
                         </tr>
                     </table>
                   </div>

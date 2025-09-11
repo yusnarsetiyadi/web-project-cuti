@@ -50,7 +50,7 @@
 								<tbody>
 									<?php
 									$no=1;									
-									$data = mysqli_query($koneksi,"select * from tbl_cuti,tbl_karyawan,tbl_divisi where cuti_pegawai=karyawan_id and cuti_divisi=divisi_id");
+									$data = mysqli_query($koneksi,"select * from cuti,tbl_karyawan,tbl_divisi where user_id=karyawan_id and divisi_id=divisi_id");
 									while($d = mysqli_fetch_array($data)){
 										?>
 										<tr>
@@ -60,21 +60,21 @@
 												<b>Devisi : </b><?php echo $d['divisi_nama'] ?>
 											</td>
 											<td>
-												<b>Request : </b><?php echo date('d-m-Y', strtotime($d['cuti_tanggal'])) ?><br>
-												<b>Mulai : </b><?php echo date('d-m-Y', strtotime($d['cuti_dari'])) ?><br>
-												<b>Akhir : </b><?php echo date('d-m-Y', strtotime($d['cuti_sampai'])) ?>
+												<b>Request : </b><?php echo date('d-m-Y', strtotime($d['tanggal_cuti'])) ?><br>
+												<b>Mulai : </b><?php echo date('d-m-Y', strtotime($d['tanggal_mulai'])) ?><br>
+												<b>Akhir : </b><?php echo date('d-m-Y', strtotime($d['tanggal_selesai'])) ?>
 											</td>												
 											<td>
 												<?php
-												echo $d['cuti_jumlah']." Hari";
+												echo $d['jumlah_cuti']." Hari";
 												?>
 											</td>
-											<td><?php echo $d['cuti_status_supervisor'] ?></td>
-											<td><?php echo $d['cuti_status_manajer'] ?></td>
+											<td><?php echo $d['supervisor_status'] ?></td>
+											<td><?php echo $d['manajer_status'] ?></td>
 											<td>
 												<center>
 													<?php
-													if($d['cuti_status_manajer'] !=""){
+													if($d['manajer_status'] !=""){
 														?>
 														<a href="cuti_print.php?id=<?php echo $d['cuti_id'] ?>" class="btn btn-sm btn-primary" target="_blank"><i class="fas fa-print"></i></a>
 														<?php
@@ -103,13 +103,13 @@
 																		<input type="hidden" name="id" value="<?php echo $d['cuti_id'] ?>">
 																		<select class="form-control" name="status" required>
 																			<option value="">--Pilih--</option>
-																			<option <?php if($d['cuti_status_manajer']=="Terima"){echo "selected='selected'";} ?> value="Terima">Terima</option>
-																			<option <?php if($d['cuti_status_manajer']=="Tolak"){echo "selected='selected'";} ?> value="Tolak">Tolak</option>
+																			<option <?php if($d['manajer_status']=="Terima"){echo "selected='selected'";} ?> value="Terima">Terima</option>
+																			<option <?php if($d['manajer_status']=="Tolak"){echo "selected='selected'";} ?> value="Tolak">Tolak</option>
 																		</select>
 																	</div>
 																	<div class="form-group">
 																		<label>Status</label>
-																		<textarea class="form-control" name="keterangan"><?php echo $d['cuti_keterangan_manajer'] ?></textarea>
+																		<textarea class="form-control" name="keterangan"><?php echo $d['manajer_keterangan'] ?></textarea>
 																	</div>															
 																</div>
 																<div class="modal-footer">

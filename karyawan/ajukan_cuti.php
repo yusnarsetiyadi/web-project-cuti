@@ -66,7 +66,7 @@
 														<td><?php echo $c['jenis_nama'] ?></td>
 														<td>
 															<?php 
-															$xx = mysqli_query($koneksi,"select sum(cuti_jumlah) as total from tbl_cuti where cuti_jenis='$idjenis' and cuti_pegawai='$saya'");
+															$xx = mysqli_query($koneksi,"select sum(jumlah_cuti) as total from cuti where jenis_cuti_id='$idjenis' and user_id='$saya'");
 															$x = mysqli_fetch_assoc($xx);
 															$xtotoal = $x['total'];
 															$diberikan = $c['jenis_jumlah'];

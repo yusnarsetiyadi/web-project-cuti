@@ -6,5 +6,5 @@ $c = mysqli_fetch_assoc($cek);
 $foto = $c['supervisor_foto'];
 unlink("../gambar/user/$foto");
 mysqli_query($koneksi, "delete from tbl_karyawan where karyawan_id='$id'");
-mysqli_query($koneksi,"delete from tbl_cuti where cuti_pegawai='$id'");
+mysqli_query($koneksi,"delete from cuti where user_id='$id'");
 header("location:karyawan.php?alert=hapus");

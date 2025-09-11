@@ -101,19 +101,19 @@
                             <?php
                             $idkaryawan = $_GET['id'];                  
                             $no=1;
-                            $data = mysqli_query($koneksi,"select * from tbl_cuti, tbl_jenis_cuti where cuti_pegawai='$idkaryawan' and cuti_jenis=jenis_id");
+                            $data = mysqli_query($koneksi,"select * from cuti, tbl_jenis_cuti where user_id='$idkaryawan' and jenis_cuti_id=jenis_id");
                             while($d = mysqli_fetch_array($data)){
                               ?>
                               <tr>
                                 <td><?php echo $no++; ?></td>
                                 <td><?php echo $d['jenis_nama'] ?></td> 
-                                <td><?php echo date('d-m-Y', strtotime($d['cuti_tanggal'])) ?></td> 
-                                <td><?php echo date('d-m-Y', strtotime($d['cuti_dari'])) ?></td>  
-                                <td><?php echo date('d-m-Y', strtotime($d['cuti_sampai'])) ?></td>  
+                                <td><?php echo date('d-m-Y', strtotime($d['tanggal_cuti'])) ?></td> 
+                                <td><?php echo date('d-m-Y', strtotime($d['tanggal_mulai'])) ?></td>  
+                                <td><?php echo date('d-m-Y', strtotime($d['tanggal_selesai'])) ?></td>  
                                 <td>
                                   <?php
-                                  $x = date("d", strtotime($d['cuti_dari']));
-                                  $xx = date("d", strtotime($d['cuti_sampai']));
+                                  $x = date("d", strtotime($d['tanggal_mulai']));
+                                  $xx = date("d", strtotime($d['tanggal_selesai']));
                                   $hasil = abs($x-$xx);
                                   echo $hasil." Hari";
                                   ?>

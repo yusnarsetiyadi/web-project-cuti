@@ -63,7 +63,7 @@
 
     <?php
     $saya = $_SESSION['id'];
-    $data = mysqli_query($koneksi,"select * from tbl_admin where id='$saya'");
+    $data = mysqli_query($koneksi,"select * from admin where id='$saya'");
     $d = mysqli_fetch_assoc($data);
     ?>
     <!-- Sidebar -->
@@ -168,7 +168,7 @@
               <i class="nav-icon far fa-calendar-alt"></i>
               <p>
                  <?php                
-                $cuti = mysqli_query($koneksi,"select * from tbl_cuti");
+                $cuti = mysqli_query($koneksi,"select * from cuti");
                 $ct = mysqli_num_rows($cuti);
                 ?>
                 Pengajuan Cuti

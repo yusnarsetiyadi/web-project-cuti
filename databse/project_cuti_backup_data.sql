@@ -99,7 +99,7 @@ DROP TABLE IF EXISTS `jenis_cuti`;
 CREATE TABLE `jenis_cuti` (
   `jenis_cuti_id` int NOT NULL AUTO_INCREMENT,
   `jenis_cuti_name` varchar(100) NOT NULL,
-  `jenis_cuti_jumlah` int NOT NULL,
+  `jenis_jumlah_cuti` int NOT NULL,
   PRIMARY KEY (`jenis_cuti_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -137,13 +137,13 @@ LOCK TABLES `role` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `tbl_admin`
+-- Table structure for table `admin`
 --
 
-DROP TABLE IF EXISTS `tbl_admin`;
+DROP TABLE IF EXISTS `admin`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `tbl_admin` (
+CREATE TABLE `admin` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
   `kontak` varchar(15) NOT NULL,
@@ -155,51 +155,51 @@ CREATE TABLE `tbl_admin` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `tbl_admin`
+-- Dumping data for table `admin`
 --
 
-LOCK TABLES `tbl_admin` WRITE;
-/*!40000 ALTER TABLE `tbl_admin` DISABLE KEYS */;
-INSERT INTO `tbl_admin` VALUES (1,'Admin Ku','081398447822','admin','21232f297a57a5a743894a0e4a801fc3','foto.png');
-/*!40000 ALTER TABLE `tbl_admin` ENABLE KEYS */;
+LOCK TABLES `admin` WRITE;
+/*!40000 ALTER TABLE `admin` DISABLE KEYS */;
+INSERT INTO `admin` VALUES (1,'Admin Ku','081398447822','admin','21232f297a57a5a743894a0e4a801fc3','foto.png');
+/*!40000 ALTER TABLE `admin` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `tbl_cuti`
+-- Table structure for table `cuti`
 --
 
-DROP TABLE IF EXISTS `tbl_cuti`;
+DROP TABLE IF EXISTS `cuti`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `tbl_cuti` (
+CREATE TABLE `cuti` (
   `cuti_id` int NOT NULL AUTO_INCREMENT,
-  `cuti_divisi` int NOT NULL,
-  `cuti_jenis` int NOT NULL,
-  `cuti_pegawai` int NOT NULL,
-  `cuti_tanggal` date NOT NULL,
-  `cuti_dari` date NOT NULL,
-  `cuti_sampai` date NOT NULL,
-  `cuti_jumlah` int NOT NULL,
-  `cuti_alasan` varchar(100) NOT NULL,
-  `cuti_alamat` varchar(100) DEFAULT NULL,
-  `cuti_supervisor` int DEFAULT NULL,
-  `cuti_status_supervisor` varchar(100) DEFAULT NULL,
-  `cuti_keterangan_supervisor` varchar(100) DEFAULT NULL,
-  `cuti_manajer` int DEFAULT NULL,
-  `cuti_status_manajer` varchar(100) DEFAULT NULL,
-  `cuti_keterangan_manajer` varchar(100) DEFAULT NULL,
+  `divisi_id` int NOT NULL,
+  `jenis_cuti_id` int NOT NULL,
+  `user_id` int NOT NULL,
+  `tanggal_cuti` date NOT NULL,
+  `tanggal_mulai` date NOT NULL,
+  `tanggal_selesai` date NOT NULL,
+  `jumlah_cuti` int NOT NULL,
+  `alasan_cuti` varchar(100) NOT NULL,
+  `alamat_cuti` varchar(100) DEFAULT NULL,
+  `supervisor_id` int DEFAULT NULL,
+  `supervisor_status` varchar(100) DEFAULT NULL,
+  `supervisor_keterangan` varchar(100) DEFAULT NULL,
+  `manajer_id` int DEFAULT NULL,
+  `manajer_status` varchar(100) DEFAULT NULL,
+  `manajer_keterangan` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`cuti_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `tbl_cuti`
+-- Dumping data for table `cuti`
 --
 
-LOCK TABLES `tbl_cuti` WRITE;
-/*!40000 ALTER TABLE `tbl_cuti` DISABLE KEYS */;
-INSERT INTO `tbl_cuti` VALUES (1,5,2,1,'2022-06-02','2022-06-05','2022-06-07',2,'acara dirumah','jalan kenari nomor 5 annur ',1,'Terima','oke',1,'Terima','oke'),(2,5,2,1,'2025-09-07','2025-09-08','2025-09-10',2,'males gawe','planet mars',1,'Tolak','kerja goblok',1,'Terima','okee deh'),(3,5,2,1,'2025-09-10','2025-09-11','2025-09-12',1,'gtw','jkt',NULL,NULL,NULL,NULL,NULL,NULL);
-/*!40000 ALTER TABLE `tbl_cuti` ENABLE KEYS */;
+LOCK TABLES `cuti` WRITE;
+/*!40000 ALTER TABLE `cuti` DISABLE KEYS */;
+INSERT INTO `cuti` VALUES (1,5,2,1,'2022-06-02','2022-06-05','2022-06-07',2,'acara dirumah','jalan kenari nomor 5 annur ',1,'Terima','oke',1,'Terima','oke'),(2,5,2,1,'2025-09-07','2025-09-08','2025-09-10',2,'males gawe','planet mars',1,'Tolak','kerja goblok',1,'Terima','okee deh'),(3,5,2,1,'2025-09-10','2025-09-11','2025-09-12',1,'gtw','jkt',NULL,NULL,NULL,NULL,NULL,NULL);
+/*!40000 ALTER TABLE `cuti` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
