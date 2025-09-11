@@ -27,7 +27,7 @@
 
           <?php
           $idsupervisor = $_GET['id'];
-          $data = mysqli_query($koneksi,"select * from tbl_supervisor, tbl_devisi where supervisor_id='$idsupervisor' and supervisor_devisi=devisi_id");
+          $data = mysqli_query($koneksi,"select * from tbl_supervisor, tbl_divisi where supervisor_id='$idsupervisor' and supervisor_divisi=divisi_id");
           $d = mysqli_fetch_assoc($data);
           ?>
 
@@ -58,7 +58,7 @@
 
               <ul class="list-group list-group-unbordered mb-3">
                 <li class="list-group-item">
-                  <b>Devisi</b> <a class="float-right"><?php echo $d['devisi_nama'] ?></a>
+                  <b>Devisi</b> <a class="float-right"><?php echo $d['divisi_nama'] ?></a>
                 </li>
                 <li class="list-group-item">
                   <b>Kelamin</b> <a class="float-right"><?php echo $d['supervisor_kelamin'] ?></a>
@@ -104,9 +104,9 @@
                           </thead>
                           <tbody>
                             <?php
-                            $devisi = $d['devisi_id'];                  
+                            $divisi = $d['divisi_id'];                  
                             $no=1;
-                            $data = mysqli_query($koneksi,"select * from tbl_karyawan where karyawan_devisi='$devisi'");
+                            $data = mysqli_query($koneksi,"select * from tbl_karyawan where karyawan_divisi='$divisi'");
                             while($d = mysqli_fetch_array($data)){
                               ?>
                               <tr>

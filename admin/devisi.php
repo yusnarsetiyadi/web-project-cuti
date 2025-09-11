@@ -32,7 +32,7 @@
 							</button>
 
 
-							<form action="devisi_act.php" method="post" enctype="multipart/form-data">
+							<form action="divisi_act.php" method="post" enctype="multipart/form-data">
 								<div class="modal fade" id="addDevisi" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 									<div class="modal-dialog" role="document">
 										<div class="modal-content">
@@ -75,25 +75,25 @@
 							<tbody>
 								<?php
 								$no=1;
-								$data = mysqli_query($koneksi,"select * from tbl_devisi");
+								$data = mysqli_query($koneksi,"select * from tbl_divisi");
 								while($d = mysqli_fetch_array($data)){
 									?>
 									<tr>
 										<td><?php echo $no++; ?></td>
-										<td><?php echo $d['devisi_nama'] ?></td>
+										<td><?php echo $d['divisi_nama'] ?></td>
 										<td>
 											<center>
-												<button type="button" class="btn btn-warning btn-sm btn-icon" data-toggle="modal" data-target="#edit_devisi_<?php echo $d['devisi_id'] ?>">
+												<button type="button" class="btn btn-warning btn-sm btn-icon" data-toggle="modal" data-target="#edit_divisi_<?php echo $d['divisi_id'] ?>">
 													<i class="fas fa-cog"></i>
 												</button> 
 
-												<button type="button" class="btn btn-danger btn-sm btn-icon" data-toggle="modal" data-target="#hapus_devisi_<?php echo $d['devisi_id'] ?>">
+												<button type="button" class="btn btn-danger btn-sm btn-icon" data-toggle="modal" data-target="#hapus_divisi_<?php echo $d['divisi_id'] ?>">
 													<i class="fas fa-trash"></i>
 												</button> 
 											</center>
 
-											<form action="devisi_update.php" method="post" enctype="multipart/form-data">
-												<div class="modal fade" id="edit_devisi_<?php echo $d['devisi_id'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+											<form action="divisi_update.php" method="post" enctype="multipart/form-data">
+												<div class="modal fade" id="edit_divisi_<?php echo $d['divisi_id'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 													<div class="modal-dialog" role="document">
 														<div class="modal-content">
 															<div class="modal-header">
@@ -107,8 +107,8 @@
 
 																<div class="form-group">
 																	<label>Nama Devisi</label>
-																	<input type="hidden" name="id" value="<?php echo $d['devisi_id'] ?>">
-																	<input type="text" name="nama" value="<?php echo $d['devisi_nama'] ?>" required="required" class="form-control" placeholder="Nama Devisi">
+																	<input type="hidden" name="id" value="<?php echo $d['divisi_id'] ?>">
+																	<input type="text" name="nama" value="<?php echo $d['divisi_nama'] ?>" required="required" class="form-control" placeholder="Nama Devisi">
 																</div>																
 															</div>
 															<div class="modal-footer">
@@ -122,7 +122,7 @@
 
 
 											<!-- modal hapus -->
-											<div class="modal fade" id="hapus_devisi_<?php echo $d['devisi_id'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+											<div class="modal fade" id="hapus_divisi_<?php echo $d['divisi_id'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 												<div class="modal-dialog" role="document">
 													<div class="modal-content">
 														<div class="modal-header">
@@ -137,7 +137,7 @@
 														</div>
 														<div class="modal-footer">
 															<button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-															<a href="devisi_hapus.php?id=<?php echo $d['devisi_id'] ?>" class="btn btn-primary">Hapus</a>
+															<a href="divisi_hapus.php?id=<?php echo $d['divisi_id'] ?>" class="btn btn-primary">Hapus</a>
 														</div>
 													</div>
 												</div>

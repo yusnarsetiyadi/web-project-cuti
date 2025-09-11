@@ -45,13 +45,13 @@
 							<tbody>
 								<?php
 								$no=1;
-								$devisi = $_SESSION['devisi'];
-								$data = mysqli_query($koneksi,"select * from tbl_karyawan, tbl_devisi where karyawan_devisi='$devisi' and karyawan_devisi=devisi_id");
+								$divisi = $_SESSION['divisi'];
+								$data = mysqli_query($koneksi,"select * from tbl_karyawan, tbl_divisi where karyawan_divisi='$divisi' and karyawan_divisi=divisi_id");
 								while($d = mysqli_fetch_array($data)){
 									?>
 									<tr>
 										<td><?php echo $no++; ?></td>
-										<td><?php echo $d['devisi_nama'] ?></td>
+										<td><?php echo $d['divisi_nama'] ?></td>
 										<td><?php echo $d['karyawan_nip'] ?></td>
 										<td><?php echo $d['karyawan_nama'] ?></td>
 										<td><?php echo $d['karyawan_kontak'] ?></td>

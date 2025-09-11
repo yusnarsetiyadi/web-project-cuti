@@ -27,8 +27,8 @@
             <div class="small-box bg-info">
               <div class="inner">
                 <?php
-                $devisi = mysqli_query($koneksi,"select * from tbl_devisi");
-                $dv = mysqli_num_rows($devisi);
+                $divisi = mysqli_query($koneksi,"select * from tbl_divisi");
+                $dv = mysqli_num_rows($divisi);
                  ?>
                 <h3><?php echo $dv ?></h3>
                 <p>Total Devisi</p>
@@ -149,7 +149,7 @@
 
         <?php
         $saya = $_SESSION['id'];
-        $data = mysqli_query($koneksi,"select * from tbl_admin  where admin_id='$saya'");
+        $data = mysqli_query($koneksi,"select * from tbl_admin  where id='$saya'");
         $d = mysqli_fetch_assoc($data);
         ?>
 
@@ -158,16 +158,16 @@
           <div class="card-body box-profile">
             <div class="text-center">
               <?php
-              if($d['admin_foto']=="admin_foto.png"){
+              if($d['foto']=="foto.png"){
                 ?>
                 <img class="profile-user-img img-fluid img-circle"
-                src="../dist/img/admin_foto.png"
+                src="../dist/img/foto.png"
                 alt="User profile picture">
                 <?php
               }else{
                 ?>
                 <img class="profile-user-img img-fluid img-circle"
-                src="../gambar/user/<?php echo $d['admin_foto'] ?>"
+                src="../gambar/user/<?php echo $d['foto'] ?>"
                 alt="User profile picture">
                 <?php
               }
@@ -175,8 +175,8 @@
               ?>               
             </div>
 
-            <h3 class="profile-username text-center"><?php echo $d['admin_nama'] ?></h3>
-            <p class="text-muted text-center"><?php echo $d['admin_kontak'] ?></p>
+            <h3 class="profile-username text-center"><?php echo $d['name'] ?></h3>
+            <p class="text-muted text-center"><?php echo $d['kontak'] ?></p>
            
             <center>
               <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#editSupervisor">
@@ -197,15 +197,15 @@
                     <div class="modal-body">
                       <div class="form-group">
                         <label>Nama</label>
-                        <input type="text" name="nama" class="form-control" value="<?php echo $d['admin_nama'] ?>" required>                        
+                        <input type="text" name="nama" class="form-control" value="<?php echo $d['name'] ?>" required>                        
                       </div>
                       <div class="form-group">
                         <label>Kontak</label>
-                        <input type="number" name="kontak" value="<?php echo $d['admin_kontak'] ?>" required="required" class="form-control">
+                        <input type="number" name="kontak" value="<?php echo $d['kontak'] ?>" required="required" class="form-control">
                       </div>
                       <div class="form-group">
                         <label>Username</label>
-                        <input type="text" name="username" value="<?php echo $d['admin_username'] ?>" required="required" class="form-control" placeholder="Username">
+                        <input type="text" name="username" value="<?php echo $d['username'] ?>" required="required" class="form-control" placeholder="Username">
                       </div>
                       <div class="form-group">
                         <label>Password</label>
@@ -253,18 +253,18 @@
                       <tr>
                         <th>Nama</th>
                         <th width="1%">:</th>
-                        <td><?php echo $d['admin_nama'] ?></td>
+                        <td><?php echo $d['name'] ?></td>
                       </tr>
                       
                       <tr>
                         <th>Kontak</th>
                         <th width="1%">:</th>
-                        <td><?php echo $d['admin_kontak'] ?></td>
+                        <td><?php echo $d['kontak'] ?></td>
                       </tr>                      
                       <tr>
                         <th>Username</th>
                         <th width="1%">:</th>
-                        <td><?php echo $d['admin_username'] ?></td>
+                        <td><?php echo $d['username'] ?></td>
                       </tr>
                     </table>
                   </div>

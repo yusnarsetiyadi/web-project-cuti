@@ -22,7 +22,7 @@
  <?php
  include '../koneksi.php';
  $idcuti = $_GET['id'];
- $data = mysqli_query($koneksi,"select * from tbl_cuti, tbl_karyawan, tbl_manajer, tbl_devisi where cuti_id='$idcuti' and cuti_pegawai=karyawan_id and karyawan_devisi=devisi_id and cuti_manajer=manajer_id");
+ $data = mysqli_query($koneksi,"select * from tbl_cuti, tbl_karyawan, tbl_manajer, tbl_divisi where cuti_id='$idcuti' and cuti_pegawai=karyawan_id and karyawan_divisi=divisi_id and cuti_manajer=manajer_id");
  $d = mysqli_fetch_assoc($data);     
  ?>
 
@@ -64,7 +64,7 @@
     </tr>
     <tr>
         <td>Unit Kerja</td>
-        <td><?php echo $d['devisi_nama'] ?></td>
+        <td><?php echo $d['divisi_nama'] ?></td>
     </tr>
 </table>
 

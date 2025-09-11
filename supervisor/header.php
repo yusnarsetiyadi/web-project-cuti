@@ -106,8 +106,8 @@
               <p>
                 Karyawan
                 <?php
-                $devisi = $_SESSION['devisi'];
-                $karyawan = mysqli_query($koneksi,"select * from tbl_karyawan where karyawan_devisi='$devisi'");
+                $divisi = $_SESSION['divisi'];
+                $karyawan = mysqli_query($koneksi,"select * from tbl_karyawan where karyawan_divisi='$divisi'");
                 $k = mysqli_num_rows($karyawan);
                  ?>
                 <span class="badge badge-info right"><?php echo $k ?></span>

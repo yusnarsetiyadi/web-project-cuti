@@ -12,7 +12,7 @@
      <?php
      include '../koneksi.php';
      $idcuti = $_GET['id'];
-     $data = mysqli_query($koneksi,"select * from tbl_cuti, tbl_karyawan, tbl_manajer, tbl_devisi,tbl_jenis_cuti,tbl_supervisor where cuti_id='$idcuti' and cuti_pegawai=karyawan_id and cuti_devisi=devisi_id and cuti_jenis=jenis_id and cuti_supervisor=supervisor_id and cuti_manajer=manajer_id");
+     $data = mysqli_query($koneksi,"select * from tbl_cuti, tbl_karyawan, tbl_manajer, tbl_divisi,tbl_jenis_cuti,tbl_supervisor where cuti_id='$idcuti' and cuti_pegawai=karyawan_id and cuti_divisi=divisi_id and cuti_jenis=jenis_id and cuti_supervisor=supervisor_id and cuti_manajer=manajer_id");
      $d = mysqli_fetch_assoc($data);
      $idkaryawan = $d['cuti_pegawai'];
      ?>
@@ -48,7 +48,7 @@
          <tr>
             <td>Devisi</td>
             <th>:</th>
-            <td><?php echo $d['devisi_nama']; ?></td>
+            <td><?php echo $d['divisi_nama']; ?></td>
         </tr>    
         <tr>
             <td>Jenis Cuti</td>
@@ -98,7 +98,7 @@
 
     <div class="tandatangan" >            
        <p><?php echo $d['cuti_status_supervisor'] ?><br>
-          <?php echo "Devisi ".$d['devisi_nama'] ?></p>
+          <?php echo "Devisi ".$d['divisi_nama'] ?></p>
           <img style="width:70px; height: 70px;" src="../gambar/tanda_tangan/<?php echo $d['supervisor_tanda_tangan'] ?>"> 
           <br/>      
           <?php echo $d['supervisor_nama']; ?>  

@@ -45,13 +45,13 @@
 											<div class="modal-body">
 												<div class="form-group">
 													<label>Devisi</label>
-													<select class="form-control" name="devisi" required>
+													<select class="form-control" name="divisi" required>
 														<option value="">--Pilih--</option>
 														<?php
-														$devisi = mysqli_query($koneksi,"select * from tbl_devisi");
-														while($dv = mysqli_fetch_array($devisi)){
+														$divisi = mysqli_query($koneksi,"select * from tbl_divisi");
+														while($dv = mysqli_fetch_array($divisi)){
 															?>
-															<option value="<?php echo $dv['devisi_id'] ?>"><?php echo $dv['devisi_nama'] ?></option>
+															<option value="<?php echo $dv['divisi_id'] ?>"><?php echo $dv['divisi_nama'] ?></option>
 															<?php
 														}
 
@@ -127,12 +127,12 @@
 							<tbody>
 								<?php
 								$no=1;
-								$data = mysqli_query($koneksi,"select * from tbl_manajer, tbl_devisi where manajer_devisi=devisi_id");
+								$data = mysqli_query($koneksi,"select * from tbl_manajer, tbl_divisi where manajer_divisi=divisi_id");
 								while($d = mysqli_fetch_array($data)){
 									?>
 									<tr>
 										<td><?php echo $no++; ?></td>
-										<td><?php echo $d['devisi_nama'] ?></td>
+										<td><?php echo $d['divisi_nama'] ?></td>
 										<td><?php echo $d['manajer_nip'] ?></td>
 										<td><?php echo $d['manajer_nama'] ?></td>
 										<td><?php echo $d['manajer_kontak'] ?></td>
@@ -177,13 +177,13 @@
 															<div class="modal-body">
 																<div class="form-group">
 																	<label>Devisi</label>
-																	<select class="form-control" name="devisi" required>
+																	<select class="form-control" name="divisi" required>
 																		<option value="">--Pilih--</option>
 																		<?php
-																		$devisi = mysqli_query($koneksi,"select * from tbl_devisi");
-																		while($dv = mysqli_fetch_array($devisi)){
+																		$divisi = mysqli_query($koneksi,"select * from tbl_divisi");
+																		while($dv = mysqli_fetch_array($divisi)){
 																			?>
-																			<option <?php if($d['manajer_devisi']==$dv['devisi_id']){echo "selected='selected'";} ?> value="<?php echo $dv['devisi_id'] ?>"><?php echo $dv['devisi_nama'] ?></option>
+																			<option <?php if($d['manajer_divisi']==$dv['divisi_id']){echo "selected='selected'";} ?> value="<?php echo $dv['divisi_id'] ?>"><?php echo $dv['divisi_nama'] ?></option>
 																			<?php
 																		}
 

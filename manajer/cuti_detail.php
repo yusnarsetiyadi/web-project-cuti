@@ -27,7 +27,7 @@
 
           <?php
           $idcuti = $_GET['id'];
-          $data = mysqli_query($koneksi,"select * from tbl_cuti, tbl_karyawan, tbl_devisi,tbl_jenis_cuti where cuti_id='$idcuti' and cuti_pegawai=karyawan_id and cuti_devisi=devisi_id and cuti_jenis=jenis_id");
+          $data = mysqli_query($koneksi,"select * from tbl_cuti, tbl_karyawan, tbl_divisi,tbl_jenis_cuti where cuti_id='$idcuti' and cuti_pegawai=karyawan_id and cuti_divisi=divisi_id and cuti_jenis=jenis_id");
           $d = mysqli_fetch_assoc($data);
           $spv = $d['cuti_supervisor'];
           ?>
@@ -60,7 +60,7 @@
 
               <ul class="list-group list-group-unbordered mb-3">
                 <li class="list-group-item">
-                  <b>Devisi</b> <a class="float-right"><?php echo $d['devisi_nama'] ?></a>
+                  <b>Devisi</b> <a class="float-right"><?php echo $d['divisi_nama'] ?></a>
                 </li>
                 <li class="list-group-item">
                   <b>Cuti</b> <a class="float-right"><?php echo $d['jenis_nama'] ?></a>

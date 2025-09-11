@@ -48,12 +48,12 @@
 							<tbody>
 								<?php
 								$no=1;
-								$data = mysqli_query($koneksi,"select * from tbl_supervisor, tbl_devisi where supervisor_devisi=devisi_id");
+								$data = mysqli_query($koneksi,"select * from tbl_supervisor, tbl_divisi where supervisor_divisi=divisi_id");
 								while($d = mysqli_fetch_array($data)){
 									?>
 									<tr>
 										<td><?php echo $no++; ?></td>
-										<td><?php echo $d['devisi_nama'] ?></td>
+										<td><?php echo $d['divisi_nama'] ?></td>
 										<td><?php echo $d['supervisor_nip'] ?></td>
 										<td><?php echo $d['supervisor_nama'] ?></td>
 										<td><?php echo $d['supervisor_kontak'] ?></td>

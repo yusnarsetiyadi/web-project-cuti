@@ -27,7 +27,7 @@
 
         <?php
         $saya = $_SESSION['id'];
-        $data = mysqli_query($koneksi,"select * from tbl_karyawan, tbl_devisi where karyawan_id='$saya' and karyawan_devisi=devisi_id");
+        $data = mysqli_query($koneksi,"select * from tbl_karyawan, tbl_divisi where karyawan_id='$saya' and karyawan_divisi=divisi_id");
         $d = mysqli_fetch_assoc($data);
         ?>
 
@@ -59,7 +59,7 @@
 
             <ul class="list-group list-group-unbordered mb-3">
               <li class="list-group-item">
-                <b>Devisi</b> <a class="float-right"><?php echo $d['devisi_nama'] ?></a>
+                <b>Devisi</b> <a class="float-right"><?php echo $d['divisi_nama'] ?></a>
               </li>
               <li class="list-group-item">
                 <b>Kontak</b> <a class="float-right"><?php echo $d['karyawan_kontak'] ?></a>

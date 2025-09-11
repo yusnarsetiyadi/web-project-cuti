@@ -62,7 +62,7 @@
 
      <?php
     $saya = $_SESSION['id'];
-    $devisi = $_SESSION['devisi'];
+    $divisi = $_SESSION['divisi'];
     $data = mysqli_query($koneksi,"select * from tbl_manajer where manajer_id='$saya'");
     $d = mysqli_fetch_assoc($data);
      ?>
@@ -108,7 +108,7 @@
               <i class="nav-icon fas fa-user-graduate"></i>
               <p>
                  <?php
-                $supervisor = mysqli_query($koneksi,"select * from tbl_supervisor where supervisor_devisi='$devisi'");
+                $supervisor = mysqli_query($koneksi,"select * from tbl_supervisor where supervisor_divisi='$divisi'");
                 $sp = mysqli_num_rows($supervisor);
                  ?>
                 <span class="badge badge-info right"><?php echo $sp ?></span>
@@ -123,7 +123,7 @@
                 Karyawan
                 <?php
 
-                $karyawan = mysqli_query($koneksi,"select * from tbl_karyawan where karyawan_devisi='$devisi'");
+                $karyawan = mysqli_query($koneksi,"select * from tbl_karyawan where karyawan_divisi='$divisi'");
                 $k = mysqli_num_rows($karyawan);
                  ?>
                 <span class="badge badge-info right"><?php echo $k ?></span>

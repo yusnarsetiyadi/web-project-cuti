@@ -37,14 +37,14 @@
         <?php
         session_start();
         include '../koneksi.php';
-        $devisi = $_SESSION['devisi'];
+        $divisi = $_SESSION['divisi'];
         $no=1;
-        $data = mysqli_query($koneksi,"select * from tbl_cuti, tbl_devisi,tbl_karyawan, tbl_jenis_cuti, tbl_supervisor where cuti_devisi='$devisi' and cuti_devisi=devisi_id and cuti_jenis=jenis_id and cuti_pegawai=karyawan_id and cuti_supervisor=supervisor_id");
+        $data = mysqli_query($koneksi,"select * from tbl_cuti, tbl_divisi,tbl_karyawan, tbl_jenis_cuti, tbl_supervisor where cuti_divisi='$divisi' and cuti_divisi=divisi_id and cuti_jenis=jenis_id and cuti_pegawai=karyawan_id and cuti_supervisor=supervisor_id");
         while($d = mysqli_fetch_array($data)){
             ?>
             <tr>
                 <td><?php echo $no++; ?></td>
-                <td><?php echo $d['devisi_nama'] ?></td>
+                <td><?php echo $d['divisi_nama'] ?></td>
                 <td><?php echo $d['karyawan_nip']. " /".$d['karyawan_nama'] ?></td>                
                 <td><?php echo $d['karyawan_kontak'] ?></td>
                 <td><?php echo date('d-m-Y', strtotime($d['cuti_tanggal'])) ?></td>

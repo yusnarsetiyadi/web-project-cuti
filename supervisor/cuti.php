@@ -50,8 +50,8 @@
 								<tbody>
 									<?php
 									$no=1;
-									$devisi = $_SESSION['devisi'];
-									$data = mysqli_query($koneksi,"select * from tbl_cuti,tbl_karyawan,tbl_jenis_cuti where cuti_devisi='$devisi' and cuti_pegawai=karyawan_id and cuti_jenis=jenis_id order by cuti_id desc");
+									$divisi = $_SESSION['divisi'];
+									$data = mysqli_query($koneksi,"select * from tbl_cuti,tbl_karyawan,tbl_jenis_cuti where cuti_divisi='$divisi' and cuti_pegawai=karyawan_id and cuti_jenis=jenis_id order by cuti_id desc");
 									while($d = mysqli_fetch_array($data)){
 										?>
 										<tr>

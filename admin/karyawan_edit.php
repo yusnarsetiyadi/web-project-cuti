@@ -75,13 +75,13 @@
               	<div class="col-md-6">
               		<div class="form-group">
               			<label>Devisi</label>
-              			<select class="form-control" name="devisi" required>
+              			<select class="form-control" name="divisi" required>
               				<option value="">--Pilih--</option>
               				<?php 
-              				$devisi = mysqli_query($koneksi,"select * from tbl_devisi");
-              				while($dv = mysqli_fetch_array($devisi)){
+              				$divisi = mysqli_query($koneksi,"select * from tbl_divisi");
+              				while($dv = mysqli_fetch_array($divisi)){
               					?>
-              					<option <?php if($d['karyawan_devisi']==$dv['devisi_id']){echo "selected='selected'";} ?> value="<?php echo $dv['devisi_id'] ?>"><?php echo $dv['devisi_nama'] ?></option>
+              					<option <?php if($d['karyawan_divisi']==$dv['divisi_id']){echo "selected='selected'";} ?> value="<?php echo $dv['divisi_id'] ?>"><?php echo $dv['divisi_nama'] ?></option>
               					<?php
               				}
 

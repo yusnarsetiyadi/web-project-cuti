@@ -63,7 +63,7 @@
 
     <?php
     $saya = $_SESSION['id'];
-    $data = mysqli_query($koneksi,"select * from tbl_admin where admin_id='$saya'");
+    $data = mysqli_query($koneksi,"select * from tbl_admin where id='$saya'");
     $d = mysqli_fetch_assoc($data);
     ?>
     <!-- Sidebar -->
@@ -72,19 +72,19 @@
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
           <?php
-          if($d['admin_foto']=="admin_foto.png"){
+          if($d['foto']=="foto.png"){
             ?>
-            <img src="../dist/img/admin_foto.png" class="img-circle elevation-2" alt="User Image">
+            <img src="../dist/img/foto.png" class="img-circle elevation-2" alt="User Image">
             <?php
           }else{
             ?>
-            <img src="../gambar/user/<?php echo $d['admin_foto'] ?>" class="img-circle elevation-2" alt="User Image">
+            <img src="../gambar/user/<?php echo $d['foto'] ?>" class="img-circle elevation-2" alt="User Image">
             <?php
           }
           ?>
         </div>
         <div class="info">
-          <a href="index.php" class="d-block"><?php echo $d['admin_nama'] ?></a>
+          <a href="index.php" class="d-block"><?php echo $d['name'] ?></a>
         </div>
       </div>
 
@@ -111,7 +111,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="devisi.php" class="nav-link">
+                <a href="divisi.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Devisi</p>
                 </a>

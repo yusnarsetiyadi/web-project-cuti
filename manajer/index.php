@@ -26,8 +26,8 @@
             <div class="small-box bg-info">
               <div class="inner">
                 <?php
-                $devisi = mysqli_query($koneksi,"select * from tbl_devisi");
-                $dv = mysqli_num_rows($devisi);
+                $divisi = mysqli_query($koneksi,"select * from tbl_divisi");
+                $dv = mysqli_num_rows($divisi);
                  ?>
                 <h3><?php echo $dv ?></h3>
                 <p>Total Devisi</p>
@@ -97,7 +97,7 @@
 
         <?php
         $saya = $_SESSION['id'];
-        $data = mysqli_query($koneksi,"select * from tbl_manajer, tbl_devisi where manajer_id='$saya' and manajer_devisi=devisi_id");
+        $data = mysqli_query($koneksi,"select * from tbl_manajer, tbl_divisi where manajer_id='$saya' and manajer_divisi=divisi_id");
         $d = mysqli_fetch_assoc($data);
         ?>
 
@@ -128,7 +128,7 @@
 
             <ul class="list-group list-group-unbordered mb-3">
               <li class="list-group-item">
-                <b>Devisi</b> <a class="float-right"><?php echo $d['devisi_nama'] ?></a>
+                <b>Devisi</b> <a class="float-right"><?php echo $d['divisi_nama'] ?></a>
               </li>
               <li class="list-group-item">
                 <b>Kontak</b> <a class="float-right"><?php echo $d['manajer_kontak'] ?></a>

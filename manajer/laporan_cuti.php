@@ -47,15 +47,15 @@
 								<tbody>
 									<?php
 									$no=1;	
-									$devisi = $_SESSION['devisi'];								
-									$data = mysqli_query($koneksi,"select * from tbl_cuti,tbl_karyawan,tbl_devisi where cuti_devisi='$devisi' and cuti_pegawai=karyawan_id and cuti_devisi=devisi_id order by cuti_id desc");
+									$divisi = $_SESSION['divisi'];								
+									$data = mysqli_query($koneksi,"select * from tbl_cuti,tbl_karyawan,tbl_divisi where cuti_divisi='$divisi' and cuti_pegawai=karyawan_id and cuti_divisi=divisi_id order by cuti_id desc");
 									while($d = mysqli_fetch_array($data)){
 										?>
 										<tr>
 											<td><?php echo $no++; ?></td>
 											<td>
 												<b>Nama : </b><?php echo $d['karyawan_nama'] ?><br>
-												<b>Devisi : </b><?php echo $d['devisi_nama'] ?>
+												<b>Devisi : </b><?php echo $d['divisi_nama'] ?>
 											</td>
 											<td>
 												<b>Request : </b><?php echo date('d-m-Y', strtotime($d['cuti_tanggal'])) ?><br>

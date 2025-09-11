@@ -54,6 +54,10 @@
 													<input type="number" name="kontak" required="required" class="form-control" placeholder="Misal : 0822*****">
 												</div>
 												<div class="form-group">
+													<label>Email</label>
+													<input type="text" name="email" required="required" class="form-control" placeholder="Misal : test@example.com">
+												</div>
+												<div class="form-group">
 													<label>Username</label>
 													<input type="text" name="username" required="required" class="form-control" placeholder="Username">
 												</div>
@@ -99,36 +103,36 @@
 									?>
 									<tr>
 										<td><?php echo $no++; ?></td>
-										<td><?php echo $d['admin_nama'] ?></td>
-										<td><?php echo $d['admin_kontak'] ?></td>
-										<td><?php echo $d['admin_username'] ?></td>                			
+										<td><?php echo $d['name'] ?></td>
+										<td><?php echo $d['kontak'] ?></td>
+										<td><?php echo $d['username'] ?></td>                			
 										<td>
 											<?php 
-											if($d['admin_foto']=="admin_foto.png"){
+											if($d['foto']=="foto.png"){
 												?>
 												<img
-												src="../dist/img/admin_foto.png" class="img-thumbnail" alt="Cinque Terre" width="60px" height="40px"> 
+												src="../dist/img/foto.png" class="img-thumbnail" alt="Cinque Terre" width="60px" height="40px"> 
 												<?php 
 											}else{ 
 												?> 
-												<img src="../gambar/user/<?php echo $d['admin_foto'] ?>" class="img-thumbnail" alt="Cinque Terre" width="304" height="236">
+												<img src="../gambar/user/<?php echo $d['foto'] ?>" class="img-thumbnail" alt="Cinque Terre" width="304" height="236">
 												<?php 
 											} 
 											?>
 										</td>
 										<td>
 											<center>
-												<button type="button" class="btn btn-warning btn-sm btn-icon" data-toggle="modal" data-target="#edit_admin_<?php echo $d['admin_id'] ?>">
+												<button type="button" class="btn btn-warning btn-sm btn-icon" data-toggle="modal" data-target="#edit_admin_<?php echo $d['id'] ?>">
 													<i class="fas fa-cog"></i>
 												</button> 
 
-												<button type="button" class="btn btn-danger btn-sm btn-icon" data-toggle="modal" data-target="#hapus_admin_<?php echo $d['admin_id'] ?>">
+												<button type="button" class="btn btn-danger btn-sm btn-icon" data-toggle="modal" data-target="#hapus_admin_<?php echo $d['id'] ?>">
 													<i class="fas fa-trash"></i>
 												</button> 
 											</center>
 
 											<form action="admin_update.php" method="post" enctype="multipart/form-data">
-												<div class="modal fade" id="edit_admin_<?php echo $d['admin_id'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+												<div class="modal fade" id="edit_admin_<?php echo $d['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 													<div class="modal-dialog" role="document">
 														<div class="modal-content">
 															<div class="modal-header">
@@ -142,16 +146,16 @@
 
 																<div class="form-group">
 																	<label>Nama Kategori</label>
-																	<input type="hidden" name="id" value="<?php echo $d['admin_id'] ?>">
-																	<input type="text" name="nama" value="<?php echo $d['admin_nama'] ?>" required="required" class="form-control" placeholder="Misal : Ahmed, Medial">
+																	<input type="hidden" name="id" value="<?php echo $d['id'] ?>">
+																	<input type="text" name="nama" value="<?php echo $d['name'] ?>" required="required" class="form-control" placeholder="Misal : Ahmed, Medial">
 																</div>
 																<div class="form-group">
 																	<label>Kontak</label>
-																	<input type="number" name="kontak" value="<?php echo $d['admin_kontak'] ?>" required="required" class="form-control" placeholder="Misal : 0822*****">
+																	<input type="number" name="kontak" value="<?php echo $d['kontak'] ?>" required="required" class="form-control" placeholder="Misal : 0822*****">
 																</div>
 																<div class="form-group">
 																	<label>Username</label>
-																	<input type="text" name="username" value="<?php echo $d['admin_username'] ?>" required="required" class="form-control" placeholder="Username">
+																	<input type="text" name="username" value="<?php echo $d['username'] ?>" required="required" class="form-control" placeholder="Username">
 																</div>
 																<div class="form-group">
 																	<label>Password</label>
@@ -175,7 +179,7 @@
 
 
 											<!-- modal hapus -->
-											<div class="modal fade" id="hapus_admin_<?php echo $d['admin_id'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+											<div class="modal fade" id="hapus_admin_<?php echo $d['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 												<div class="modal-dialog" role="document">
 													<div class="modal-content">
 														<div class="modal-header">
@@ -190,7 +194,7 @@
 														</div>
 														<div class="modal-footer">
 															<button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-															<a href="admin_hapus.php?id=<?php echo $d['admin_id'] ?>" class="btn btn-primary">Hapus</a>
+															<a href="admin_hapus.php?id=<?php echo $d['id'] ?>" class="btn btn-primary">Hapus</a>
 														</div>
 													</div>
 												</div>
