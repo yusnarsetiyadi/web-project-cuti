@@ -27,7 +27,7 @@
 
           <?php
           $idcuti = $_GET['id'];
-          $data = mysqli_query($koneksi,"select * from cuti, tbl_karyawan, tbl_divisi,tbl_jenis_cuti where cuti_id='$idcuti' and user_id=karyawan_id and divisi_id=divisi_id and jenis_cuti_id=jenis_id");
+          $data = mysqli_query($koneksi,"select user.foto as karyawan_foto, user.name as karyawan_nama, user.nip as karyawan_nip, divisi.divisi_name as divisi_nama, jenis_cuti.jenis_cuti_name as jenis_nama, cuti.* from cuti join user on cuti.user_id = user.id join divisi on cuti.divisi_id = divisi.divisi_id join jenis_cuti on cuti.jenis_cuti_id = jenis_cuti.jenis_cuti_id where cuti_id=$idcuti");
           $d = mysqli_fetch_assoc($data);
           ?>
 
@@ -80,7 +80,7 @@
           <div class="card">
 
             <div class="card-header">
-              <h3 class="card-title">Data Divisi</h3>
+              <h3 class="card-title">Data Pengajuan Cuti</h3>
               <div class="float-right">
                 <a href="cuti.php" class="btn btn-sm btn-warning"><i class="fa fa-minus"></i> Kembali</a>
                

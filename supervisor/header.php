@@ -61,7 +61,7 @@
 
     <?php
     $saya = $_SESSION['id'];
-    $data = mysqli_query($koneksi,"select * from tbl_supervisor where supervisor_id='$saya'");
+    $data = mysqli_query($koneksi,"select * from user where id=$saya");
     $d = mysqli_fetch_assoc($data);
      ?>
 
@@ -71,20 +71,20 @@
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
           <?php
-          if($d['supervisor_foto']=="supervisor_foto.png"){
+          if($d['foto']=="supervisor_foto.png"){
             ?>
             <img src="../dist/img/supervisor_foto.png" class="img-circle elevation-2" alt="User Image">
             <?php
           }else{
             ?>
-            <img src="../gambar/user/<?php echo $d['supervisor_foto'] ?>" class="img-circle elevation-2" alt="User Image">
+            <img src="../gambar/user/<?php echo $d['foto'] ?>" class="img-circle elevation-2" alt="User Image">
             <?php
           }
           ?>
           
         </div>
         <div class="info">
-          <a href="#" class="d-block"><?php echo $d['supervisor_nama'] ?></a>
+          <a href="#" class="d-block"><?php echo $d['name'] ?></a>
         </div>
       </div>
 
@@ -107,7 +107,7 @@
                 Karyawan
                 <?php
                 $divisi = $_SESSION['divisi'];
-                $karyawan = mysqli_query($koneksi,"select * from tbl_karyawan where karyawan_divisi='$divisi'");
+                $karyawan = mysqli_query($koneksi,"select * from user where divisi_id=$divisi");
                 $k = mysqli_num_rows($karyawan);
                  ?>
                 <span class="badge badge-info right"><?php echo $k ?></span>

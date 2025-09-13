@@ -6,7 +6,7 @@
 		<div class="container-fluid">
 			<div class="row mb-2">
 				<div class="col-sm-6">
-					<h1>Divisi</h1>
+					<h1>Cuti</h1>
 				</div>
 				<div class="col-sm-6">
 					<ol class="breadcrumb float-sm-right">
@@ -51,7 +51,7 @@
 									<?php
 									$no=1;
 									$divisi = $_SESSION['divisi'];
-									$data = mysqli_query($koneksi,"select * from cuti,tbl_karyawan,tbl_jenis_cuti where divisi_id='$divisi' and user_id=karyawan_id and jenis_cuti_id=jenis_id order by cuti_id desc");
+									$data = mysqli_query($koneksi,"select user.name as karyawan_nama, jenis_cuti.jenis_cuti_name as jenis_nama, cuti.* from cuti join user on cuti.user_id = user.id join jenis_cuti on cuti.jenis_cuti_id = jenis_cuti.jenis_cuti_id where cuti.divisi_id=$divisi order by cuti_id desc");
 									while($d = mysqli_fetch_array($data)){
 										?>
 										<tr>

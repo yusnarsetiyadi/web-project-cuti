@@ -4,6 +4,7 @@ include '../koneksi.php';
 $id = $_SESSION['id'];
 $alamat = $_POST['alamat'];
 $kontak = $_POST['kontak'];
+$email = $_POST['email'];
 $username = $_POST['username'];
 $password = md5($_POST['password']);
 
@@ -13,10 +14,10 @@ $filename = $_FILES['foto']['name'];
 
 if($filename == ""){
 	if($_POST['password']==""){
-		mysqli_query($koneksi,"update tbl_supervisor set supervisor_alamat='$alamat', supervisor_kontak='$kontak', supervisor_username='$username' where supervisor_id='$id'");
+		mysqli_query($koneksi,"update user set alamat='$alamat', kontak='$kontak', email='$email', username='$username' where id=$id");
 		header("location:index.php?alert=profil");
 	}else{
-		mysqli_query($koneksi,"update tbl_supervisor set supervisor_alamat='$alamat', supervisor_kontak='$kontak', supervisor_username='$username', supervisor_password='$password' where supervisor_id='$id'");
+		mysqli_query($koneksi,"update user set alamat='$alamat', kontak='$kontak', email='$email', username='$username', password='$password' where id=$id");
 		header("location:index.php?alert=profil");
 	}
 	
@@ -29,10 +30,10 @@ if($filename == ""){
 		move_uploaded_file($_FILES['foto']['tmp_name'], '../gambar/user/'.$rand.'_'.$filename);
 		$file_gambar = $rand.'_'.$filename;
 		if($_POST['password']==""){
-			mysqli_query($koneksi,"update tbl_supervisor set supervisor_alamat='$alamat', supervisor_kontak='$kontak', supervisor_username='$username', supervisor_foto='$file_gambar' where supervisor_id='$id'");
+			mysqli_query($koneksi,"update user set alamat='$alamat', kontak='$kontak', email='$email', username='$username', foto='$file_gambar' where id=$id");
 			header("location:index.php?alert=profil");
 		}else{
-			mysqli_query($koneksi,"update tbl_supervisor set supervisor_alamat='$alamat', supervisor_kontak='$kontak', supervisor_username='$username', supervisor_password='$password', supervisor_foto='$file_gambar' where supervisor_id='$id'");
+			mysqli_query($koneksi,"update user set alamat='$alamat', kontak='$kontak', email='$email', username='$username', password='$password', foto='$file_gambar' where id=$id");
 			header("location:index.php?alert=profil");
 		}
 	}
