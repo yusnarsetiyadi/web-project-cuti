@@ -7,6 +7,7 @@ $nama = $_POST['nama'];
 $kelamin = $_POST['kelamin'];
 $alamat = $_POST['alamat'];
 $kontak = $_POST['kontak'];
+$email = $_POST['email'];
 $username = $_POST['username'];
 $password = md5($_POST['password']);
 
@@ -16,10 +17,10 @@ $filename = $_FILES['foto']['name'];
 
 if($filename == ""){
 	if($_POST['password']==""){
-		mysqli_query($koneksi, "update tbl_manajer set manajer_divisi='$divisi', manajer_nip='$nip', manajer_nama='$nama', manajer_kelamin='$kelamin', manajer_alamat='$alamat', manajer_kontak='$kontak', manajer_username='$username' where manajer_id='$id'")or die(mysqli_error($koneksi));
+		mysqli_query($koneksi, "update user set divisi_id=$divisi, nip='$nip', name='$nama', kelamin='$kelamin', alamat='$alamat', kontak='$kontak', username='$username', email='$email' where id=$id")or die(mysqli_error($koneksi));
 		header("location:manajer.php?alert=edit");
 	}else{
-		mysqli_query($koneksi, "update tbl_manajer set manajer_divisi='$divisi', manajer_nip='$nip', manajer_nama='$nama', manajer_kelamin='$kelamin', manajer_alamat='$alamat', manajer_kontak='$kontak', manajer_username='$username', manajer_password='$password' where manajer_id='$id'")or die(mysqli_error($koneksi));
+		mysqli_query($koneksi, "update user set divisi_id=$divisi, nip='$nip', name='$nama', kelamin='$kelamin', alamat='$alamat', kontak='$kontak', username='$username', email='$email', password='$password' where id=$id")or die(mysqli_error($koneksi));
 		header("location:manajer.php?alert=edit");
 	}
 	
@@ -32,10 +33,10 @@ if($filename == ""){
 		move_uploaded_file($_FILES['foto']['tmp_name'], '../gambar/user/'.$rand.'_'.$filename);
 		$file_gambar = $rand.'_'.$filename;
 		if($_POST['password']==""){
-			mysqli_query($koneksi, "update tbl_manajer set manajer_divisi='$divisi', manajer_nip='$nip', manajer_nama='$nama', manajer_kelamin='$kelamin', manajer_alamat='$alamat', manajer_kontak='$kontak', manajer_username='$username', manajer_foto='$file_gambar' where manajer_id='$id'")or die(mysqli_error($koneksi));
+			mysqli_query($koneksi, "update user set divisi_id=$divisi, nip='$nip', name='$nama', kelamin='$kelamin', alamat='$alamat', kontak='$kontak', username='$username', email='$email', foto='$file_gambar' where id=$id")or die(mysqli_error($koneksi));
 			header("location:manajer.php?alert=edit");
 		}else{
-			mysqli_query($koneksi, "update tbl_manajer set manajer_divisi='$divisi', manajer_nip='$nip', manajer_nama='$nama', manajer_kelamin='$kelamin', manajer_alamat='$alamat', manajer_kontak='$kontak', manajer_username='$username', manajer_password='$password', manajer_foto='$file_gambar' where manajer_id='$id'")or die(mysqli_error($koneksi));
+			mysqli_query($koneksi, "update user set divisi_id=$divisi, nip='$nip', name='$nama', kelamin='$kelamin', alamat='$alamat', kontak='$kontak', username='$username', email='$email', password='$password', foto='$file_gambar' where id=$id")or die(mysqli_error($koneksi));
 			header("location:manajer.php?alert=edit");
 		}
 	}

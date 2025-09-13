@@ -112,7 +112,7 @@
             <div class="small-box bg-danger">
               <div class="inner">
                 <?php
-                $ctt = mysqli_query($koneksi,"select * from cuti where manajer_dtatus='Tolak'");
+                $ctt = mysqli_query($koneksi,"select * from cuti where manajer_status='Tolak' or supervisor_status='Tolak'");
                 $ctx = mysqli_num_rows($ctt);
                 ?>
                 <h3><?php echo $ctx ?></h3>
@@ -204,6 +204,10 @@
                         <input type="number" name="kontak" value="<?php echo $d['kontak'] ?>" required="required" class="form-control">
                       </div>
                       <div class="form-group">
+                        <label>Email</label>
+                        <input type="text" name="email" value="<?php echo $d['email'] ?>" required="required" class="form-control">
+                      </div>
+                      <div class="form-group">
                         <label>Username</label>
                         <input type="text" name="username" value="<?php echo $d['username'] ?>" required="required" class="form-control" placeholder="Username">
                       </div>
@@ -255,12 +259,16 @@
                         <th width="1%">:</th>
                         <td><?php echo $d['name'] ?></td>
                       </tr>
-                      
                       <tr>
                         <th>Kontak</th>
                         <th width="1%">:</th>
                         <td><?php echo $d['kontak'] ?></td>
-                      </tr>                      
+                      </tr>
+                      <tr>
+                        <th>Email</th>
+                        <th width="1%">:</th>
+                        <td><?php echo $d['email'] ?></td>
+                      </tr>               
                       <tr>
                         <th>Username</th>
                         <th width="1%">:</th>

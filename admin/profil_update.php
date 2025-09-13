@@ -4,6 +4,7 @@ include '../koneksi.php';
 $id = $_SESSION['id'];
 $nama = $_POST['nama'];
 $kontak = $_POST['kontak'];
+$email = $_POST['email'];
 $username = $_POST['username'];
 $password = md5($_POST['password']);
 
@@ -13,10 +14,10 @@ $filename = $_FILES['foto']['name'];
 
 if($filename == ""){
 	if($_POST['password']==""){
-		mysqli_query($koneksi, "update admin set name='$nama', kontak='$kontak', username='$username' where id='$id'")or die(mysqli_error($koneksi));
+		mysqli_query($koneksi, "update admin set name='$nama', kontak='$kontak', email='$email' username='$username' where id=$id")or die(mysqli_error($koneksi));
 		header("location:index.php?alert=edit");
 	}else{
-		mysqli_query($koneksi, "update admin set name='$nama', kontak='$kontak', username='$username', password='$password' where id='$id'")or die(mysqli_error($koneksi));
+		mysqli_query($koneksi, "update admin set name='$nama', kontak='$kontak', email='$email' username='$username', password='$password' where id=$id")or die(mysqli_error($koneksi));
 		header("location:index.php?alert=edit");
 	}
 	
@@ -29,10 +30,10 @@ if($filename == ""){
 		move_uploaded_file($_FILES['foto']['tmp_name'], '../gambar/user/'.$rand.'_'.$filename);
 		$file_gambar = $rand.'_'.$filename;
 		if($_POST['password']==""){
-			mysqli_query($koneksi, "update admin set name='$nama', kontak='$kontak', username='$username', foto='$file_gambar' where id='$id'")or die(mysqli_error($koneksi));
+			mysqli_query($koneksi, "update admin set name='$nama', kontak='$kontak', email='$email' username='$username', foto='$file_gambar' where id=$id")or die(mysqli_error($koneksi));
 			header("location:index.php?alert=edit");
 		}else{
-			mysqli_query($koneksi, "update admin set name='$nama', kontak='$kontak', username='$username', password='$password', foto='$file_gambar' where id='$id'")or die(mysqli_error($koneksi));
+			mysqli_query($koneksi, "update admin set name='$nama', kontak='$kontak', email='$email' username='$username', password='$password', foto='$file_gambar' where id=$id")or die(mysqli_error($koneksi));
 			header("location:index.php?alert=edit");
 		}
 	}

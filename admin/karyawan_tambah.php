@@ -45,13 +45,13 @@
               			<label>Nama </label>
               			<input type="text" name="nama" class="form-control" required placeholder="Misal : Hamdan, Ali, ...">
               		</div>
-                  <div class="form-group">
-                    <label>Jabatan </label>
-                    <input type="text" name="jabatan" class="form-control" required placeholder="Jabatan">
-                  </div>
               		<div class="form-group">
               			<label>Kontak </label>
               			<input type="number" name="kontak" class="form-control" required placeholder="Misal : 0822**, ...">
+              		</div>
+						<div class="form-group">
+              			<label>Email </label>
+              			<input type="text" name="email" class="form-control" required placeholder="Misal : test@example.com">
               		</div>
               		<!-- /.form-group -->
               		<div class="form-group">
@@ -71,10 +71,10 @@
               			<select class="form-control" name="divisi" required>
               				<option value="">--Pilih--</option>
               				<?php 
-              				$divisi = mysqli_query($koneksi,"select * from tbl_divisi");
+              				$divisi = mysqli_query($koneksi,"select * from divisi");
               				while($dv = mysqli_fetch_array($divisi)){
               					?>
-              					<option value="<?php echo $dv['divisi_id'] ?>"><?php echo $dv['divisi_nama'] ?></option>
+              					<option value="<?php echo $dv['divisi_id'] ?>"><?php echo $dv['divisi_name'] ?></option>
               					<?php
               				}
 

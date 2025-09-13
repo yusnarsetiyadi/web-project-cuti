@@ -4,7 +4,7 @@ $id = $_POST['id'];
 $divisi = $_POST['divisi'];
 $nip = $_POST['nip'];
 $nama = $_POST['nama'];
-$jabatan = $_POST['jabatan'];
+$email = $_POST['email'];
 $alamat = $_POST['alamat'];
 $kelamin = $_POST['kelamin'];
 $kontak = $_POST['kontak'];
@@ -19,10 +19,10 @@ $filename = $_FILES['foto']['name'];
 
 if($filename == ""){
 	if($_POST['password']==""){
-		mysqli_query($koneksi, "update tbl_karyawan set karyawan_divisi='$divisi', karyawan_nip='$nip', karyawan_nama='$nama', karyawan_jabatan='$jabatan', karyawan_kelamin='$kelamin', karyawan_kontak='$kontak', karyawan_alamat='$alamat', karyawan_username='$username' where karyawan_id='$id'")or die(mysqli_error($koneksi));
+		mysqli_query($koneksi, "update user set divisi_id=$divisi_id, nip='$nip', name='$nama', kelamin='$kelamin', kontak='$kontak', alamat='$alamat', email='$email' username='$username' where id=$id")or die(mysqli_error($koneksi));
 		header("location:karyawan.php?alert=edit");
 	}else{
-		mysqli_query($koneksi, "update tbl_karyawan set karyawan_divisi='$divisi', karyawan_nip='$nip', karyawan_nama='$nama', karyawan_kelamin='$kelamin', karyawan_kontak='$kontak', karyawan_alamat='$alamat', karyawan_username='$username', karyawan_password='$password' where karyawan_id='$id'")or die(mysqli_error($koneksi));
+		mysqli_query($koneksi, "update user set divisi_id=$divisi_id, nip='$nip', name='$nama', kelamin='$kelamin', kontak='$kontak', alamat='$alamat', email='$email' username='$username', password='$password' where id=$id")or die(mysqli_error($koneksi));
 		header("location:karyawan.php?alert=edit");
 	}
 	
@@ -35,10 +35,10 @@ if($filename == ""){
 		move_uploaded_file($_FILES['foto']['tmp_name'], '../gambar/user/'.$rand.'_'.$filename);
 		$file_gambar = $rand.'_'.$filename;
 		if($_POST['password']==""){
-		mysqli_query($koneksi, "update tbl_karyawan set karyawan_divisi='$divisi', karyawan_nip='$nip', karyawan_nama='$nama', karyawan_kelamin='$kelamin', karyawan_kontak='$kontak', karyawan_alamat='$alamat', karyawan_username='$username', karyawan_foto='$file_gambar' where karyawan_id='$id'")or die(mysqli_error($koneksi));
+		mysqli_query($koneksi, "update user set divisi_id=$divisi_id, nip='$nip', name='$nama', kelamin='$kelamin', kontak='$kontak', alamat='$alamat', email='$email' username='$username', foto='$file_gambar' where id=$id")or die(mysqli_error($koneksi));
 		header("location:karyawan.php?alert=edit");
 	}else{
-		mysqli_query($koneksi, "update tbl_karyawan set karyawan_divisi='$divisi', karyawan_nip='$nip', karyawan_nama='$nama', karyawan_kelamin='$kelamin', karyawan_kontak='$kontak', karyawan_alamat='$alamat', karyawan_username='$username', karyawan_password='$password', karyawan_foto='$file_gambar' where karyawan_id='$id'")or die(mysqli_error($koneksi));
+		mysqli_query($koneksi, "update user set divisi_id=$divisi_id, nip='$nip', name='$nama', kelamin='$kelamin', kontak='$kontak', alamat='$alamat', email='$email' username='$username', password='$password', foto='$file_gambar' where id=$id")or die(mysqli_error($koneksi));
 		header("location:karyawan.php?alert=edit");
 	}
 	}

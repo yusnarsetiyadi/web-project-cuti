@@ -6,6 +6,7 @@ $nip = $_POST['nip'];
 $nama = $_POST['nama'];
 $kelamin = $_POST['kelamin'];
 $kontak = $_POST['kontak'];
+$email = $_POST['email'];
 $alamat = $_POST['alamat'];
 $username = $_POST['username'];
 $password = md5($_POST['password']);
@@ -17,10 +18,10 @@ $filename = $_FILES['foto']['name'];
 
 if($filename == ""){
 	if($_POST['password']==""){
-		mysqli_query($koneksi, "update tbl_supervisor set supervisor_divisi='$divisi', supervisor_nip='$nip', supervisor_nama='$nama', supervisor_kelamin='$kelamin', supervisor_kontak='$kontak', supervisor_alamat='$alamat', supervisor_username='$username' where supervisor_id='$id'")or die(mysqli_error($koneksi));
+		mysqli_query($koneksi, "update user set divisi_id=$divisi, nip='$nip', name='$nama', kelamin='$kelamin', kontak='$kontak', alamat='$alamat', email='$email', username='$username' where id=$id")or die(mysqli_error($koneksi));
 		header("location:supervisor.php?alert=edit");
 	}else{
-		mysqli_query($koneksi, "update tbl_supervisor set supervisor_divisi='$divisi', supervisor_nip='$nip', supervisor_nama='$nama', supervisor_kelamin='$kelamin', supervisor_kontak='$kontak', supervisor_alamat='$alamat', supervisor_username='$username', supervisor_password='$password' where supervisor_id='$id'")or die(mysqli_error($koneksi));
+		mysqli_query($koneksi, "update user set divisi_id=$divisi, nip='$nip', name='$nama', kelamin='$kelamin', kontak='$kontak', alamat='$alamat', email='$email', username='$username', password='$password' where id=$id")or die(mysqli_error($koneksi));
 		header("location:supervisor.php?alert=edit");
 	}
 	
@@ -33,10 +34,10 @@ if($filename == ""){
 		move_uploaded_file($_FILES['foto']['tmp_name'], '../gambar/user/'.$rand.'_'.$filename);
 		$file_gambar = $rand.'_'.$filename;
 		if($_POST['password']==""){
-			mysqli_query($koneksi, "update tbl_supervisor set supervisor_divisi='$divisi', supervisor_nip='$nip', supervisor_nama='$nama', supervisor_kelamin='$kelamin', supervisor_kontak='$kontak', supervisor_alamat='$alamat', supervisor_username='$username', supervisor_foto='$file_gambar' where supervisor_id='$id'")or die(mysqli_error($koneksi));
+			mysqli_query($koneksi, "update user set divisi_id=$divisi, nip='$nip', name='$nama', kelamin='$kelamin', kontak='$kontak', alamat='$alamat', email='$email', username='$username', foto='$file_gambar' where id=$id")or die(mysqli_error($koneksi));
 			header("location:supervisor.php?alert=edit");
 		}else{
-			mysqli_query($koneksi, "update tbl_supervisor set supervisor_divisi='$divisi', supervisor_nip='$nip', supervisor_nama='$nama', supervisor_kelamin='$kelamin', supervisor_kontak='$kontak', supervisor_alamat='$alamat', supervisor_username='$username', supervisor_password='$password', supervisor_foto='$file_gambar' where supervisor_id='$id'")or die(mysqli_error($koneksi));
+			mysqli_query($koneksi, "update user set divisi_id=$divisi, nip='$nip', name='$nama', kelamin='$kelamin', kontak='$kontak', alamat='$alamat', email='$email', username='$username', password='$password', foto='$file_gambar' where id=$id")or die(mysqli_error($koneksi));
 			header("location:supervisor.php?alert=edit");
 		}
 	}

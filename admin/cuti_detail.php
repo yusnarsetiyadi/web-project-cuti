@@ -26,7 +26,7 @@
         <div class="col-md-3">
 
           <?php
-          $idcuti = $_GET['cuti_id'];
+          $idcuti = $_GET['id'];
           $data = mysqli_query($koneksi,"select user.foto as karyawan_foto, user.name as karyawan_nama, user.nip as karyawan_nip, divisi.divisi_name as divisi_nama, jenis_cuti.jenis_cuti_name as jenis_nama, cuti.* from cuti join user on cuti.user_id = user.id join divisi on cuti.divisi_id = divisi.divisi_id join jenis_cuti on cuti.jenis_cuti_id = jenis_cuti.jenis_cuti_id where cuti_id=$idcuti");
           $d = mysqli_fetch_assoc($data);
           ?>

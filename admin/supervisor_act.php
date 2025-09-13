@@ -5,6 +5,7 @@ $nip = $_POST['nip'];
 $nama = $_POST['nama'];
 $kelamin = $_POST['kelamin'];
 $kontak = $_POST['kontak'];
+$email = $_POST['email'];
 $alamat = $_POST['alamat'];
 $username = $_POST['username'];
 $password = md5($_POST['password']);
@@ -14,7 +15,7 @@ $allowed =  array('gif','png','jpg','jpeg');
 $filename = $_FILES['foto']['name'];
 
 if($filename == ""){
-	mysqli_query($koneksi, "INSERT INTO tbl_supervisor VALUES(NULL,'$divisi','$nip','$nama','$kelamin','$kontak','$alamat','$username','$password','supervisor_foto.png','')")or die(mysqli_error($koneksi));
+	mysqli_query($koneksi, "INSERT INTO user VALUES(NULL,'$nama','$nip','$kontak','$kelamin','$alamat',$divisi,2,'$username','$password','supervisor_foto.png','','$email')")or die(mysqli_error($koneksi));
 	header("location:supervisor.php?alert=tambah");
 }else{
 	$ext = pathinfo($filename, PATHINFO_EXTENSION);
@@ -24,7 +25,7 @@ if($filename == ""){
 	}else{
 		move_uploaded_file($_FILES['foto']['tmp_name'], '../gambar/user/'.$rand.'_'.$filename);
 		$file_gambar = $rand.'_'.$filename;
-		mysqli_query($koneksi, "INSERT INTO tbl_supervisor VALUES(NULL,'$divisi','$nip','$nama','$kelamin','$kontak','$alamat','$username','$password','$file_gambar','')")or die(mysqli_error($koneksi));
+		mysqli_query($koneksi, "INSERT INTO user VALUES(NULL,'$nama','$nip','$kontak','$kelamin','$alamat',$divisi,2,'$username','$password','$file_gambar','','$email')")or die(mysqli_error($koneksi));
 		header("location:supervisor.php?alert=tambah");
 	}
 }

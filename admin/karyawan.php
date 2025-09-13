@@ -39,6 +39,7 @@
 									<th>NIP</th>
 									<th>Nama</th>
 									<th>Kontak</th>
+									<th>Email</th>
 									<th>Jenis Kelamin</th>
 									<th>Username</th>
 									<th>Foto</th>
@@ -48,43 +49,44 @@
 							<tbody>
 								<?php
 								$no=1;
-								$data = mysqli_query($koneksi,"select * from tbl_karyawan, tbl_divisi where karyawan_divisi=divisi_id");
+								$data = mysqli_query($koneksi,"select divisi.divisi_name as divisi_nama, user.* from user join divisi on user.divisi_id = divisi.divisi_id where user.role_id=1");
 								while($d = mysqli_fetch_array($data)){
 									?>
 									<tr>
 										<td><?php echo $no++; ?></td>
 										<td><?php echo $d['divisi_nama'] ?></td>
-										<td><?php echo $d['karyawan_nip'] ?></td>
-										<td><?php echo $d['karyawan_nama'] ?></td>
-										<td><?php echo $d['karyawan_kontak'] ?></td>
-										<td><?php echo $d['karyawan_kelamin'] ?></td>
-										<td><?php echo $d['karyawan_username'] ?></td>                		
+										<td><?php echo $d['nip'] ?></td>
+										<td><?php echo $d['name'] ?></td>
+										<td><?php echo $d['kontak'] ?></td>
+										<td><?php echo $d['email'] ?></td>
+										<td><?php echo $d['kelamin'] ?></td>
+										<td><?php echo $d['username'] ?></td>                		
 										<td>
 											<?php 
-											if($d['karyawan_foto']=="karyawan_foto.png"){
+											if($d['foto']=="karyawan_foto.png"){
 												?>
 												<img
 												src="../dist/img/karyawan_foto.png" class="img-thumbnail" alt="Cinque Terre" width="60px" height="40px"> 
 												<?php 
 											}else{ 
 												?> 
-												<img src="../gambar/user/<?php echo $d['karyawan_foto'] ?>" class="img-thumbnail" alt="Cinque Terre" width="60px" height="40px">
+												<img src="../gambar/user/<?php echo $d['foto'] ?>" class="img-thumbnail" alt="Cinque Terre" width="60px" height="40px">
 												<?php 
 											} 
 											?>
 										</td> 
 										<td>
 											<center>
-												<a href="karyawan_edit.php?id=<?php echo $d['karyawan_id'] ?>" class="btn btn-sm btn-warning"><i class="fas fa-cog"></i></a>
+												<a href="karyawan_edit.php?id=<?php echo $d['id'] ?>" class="btn btn-sm btn-warning"><i class="fas fa-cog"></i></a>
 
-												<button type="button" class="btn btn-danger btn-sm btn-icon" data-toggle="modal" data-target="#hapus_karyawan_<?php echo $d['karyawan_id'] ?>">
+												<button type="button" class="btn btn-danger btn-sm btn-icon" data-toggle="modal" data-target="#hapus_karyawan_<?php echo $d['id'] ?>">
 													<i class="fas fa-trash"></i>
 												</button> 
 											</center>
 											
 
 											<!-- modal hapus -->
-											<div class="modal fade" id="hapus_karyawan_<?php echo $d['karyawan_id'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+											<div class="modal fade" id="hapus_karyawan_<?php echo $d['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 												<div class="modal-dialog" role="document">
 													<div class="modal-content">
 														<div class="modal-header">
@@ -99,7 +101,7 @@
 														</div>
 														<div class="modal-footer">
 															<button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-															<a href="karyawan_hapus.php?id=<?php echo $d['karyawan_id'] ?>" class="btn btn-primary">Hapus</a>
+															<a href="karyawan_hapus.php?id=<?php echo $d['id'] ?>" class="btn btn-primary">Hapus</a>
 														</div>
 													</div>
 												</div>
