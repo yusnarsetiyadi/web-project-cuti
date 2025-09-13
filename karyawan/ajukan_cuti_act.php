@@ -25,7 +25,7 @@ $hari = $total;
 if($total>=$sisa){
 	header("location:ajukan_cuti.php?alert=gagal");
 }else{
-	mysqli_query($koneksi,"insert into cuti (cuti_id,divisi_id,jenis_cuti_id,user_id,tanggal_cuti,tanggal_mulai,tanggal_selesai, jumlah_cuti,alasan_cuti,alamat_cuti) values(NULL,'$divisi','$jenis','$karyawan','$tanggal_request','$mulai','$akhir','$hari','$alasan','$alamat')");
+	mysqli_query($koneksi,"insert into cuti (cuti_id,divisi_id,jenis_cuti_id,user_id,tanggal_cuti,tanggal_mulai,tanggal_selesai, jumlah_cuti,alasan_cuti,alamat_cuti) values(NULL,$divisi,$jenis,$karyawan,'$tanggal_request','$mulai','$akhir','$hari','$alasan','$alamat')");
 	header("location:cuti_saya.php?alert=tambah");
 }
 

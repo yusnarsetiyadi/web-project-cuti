@@ -27,7 +27,7 @@
 
         <?php
         $saya = $_SESSION['id'];
-        $data = mysqli_query($koneksi,"select * from tbl_karyawan, tbl_divisi where karyawan_id='$saya' and karyawan_divisi=divisi_id");
+        $data = mysqli_query($koneksi,"select divisi.divisi_name as divisi_nama, user.* from user join divisi on user.divisi_id = divisi.divisi_id where user.id=$saya");
         $d = mysqli_fetch_assoc($data);
         ?>
 
@@ -36,7 +36,7 @@
           <div class="card-body box-profile">
             <div class="text-center">
               <?php
-              if($d['karyawan_foto']=="karyawan_foto.png"){
+              if($d['foto']=="karyawan_foto.png"){
                 ?>
                 <img class="profile-user-img img-fluid img-circle"
                 src="../dist/img/karyawan_foto.png"
@@ -45,7 +45,7 @@
               }else{
                 ?>
                 <img class="profile-user-img img-fluid img-circle"
-                src="../gambar/user/<?php echo $d['karyawan_foto'] ?>"
+                src="../gambar/user/<?php echo $d['foto'] ?>"
                 alt="User profile picture">
                 <?php
               }
@@ -54,19 +54,19 @@
               ?>               
             </div>
 
-            <h3 class="profile-username text-center"><?php echo $d['karyawan_nama'] ?></h3>
-            <p class="text-muted text-center"><?php echo $d['karyawan_nip'] ?></p>
+            <h3 class="profile-username text-center"><?php echo $d['name'] ?></h3>
+            <p class="text-muted text-center"><?php echo $d['nip'] ?></p>
 
             <ul class="list-group list-group-unbordered mb-3">
               <li class="list-group-item">
                 <b>Divisi</b> <a class="float-right"><?php echo $d['divisi_nama'] ?></a>
               </li>
               <li class="list-group-item">
-                <b>Kontak</b> <a class="float-right"><?php echo $d['karyawan_kontak'] ?></a>
+                <b>Kontak</b> <a class="float-right"><?php echo $d['kontak'] ?></a>
               </li>                          
             </ul>
             <center>
-              <img style="width:80px; height: 80px;" src="../gambar/tanda_tangan/<?php echo $d['karyawan_tanda_tangan'] ?>">
+              <img style="width:80px; height: 80px;" src="../gambar/tanda_tangan/<?php echo $d['tanda_tangan'] ?>">
             </center>
           </div>
           <!-- /.card-body -->
@@ -124,15 +124,19 @@
 
                     <div class="form-group">
                       <label>Alamat</label>
-                      <textarea class="form-control" name="alamat"><?php echo $d['karyawan_alamat'] ?></textarea>
+                      <textarea class="form-control" name="alamat"><?php echo $d['alamat'] ?></textarea>
                     </div>
                     <div class="form-group">
                       <label>Kontak</label>
-                      <input type="number" name="kontak" value="<?php echo $d['karyawan_kontak'] ?>" required="required" class="form-control">
+                      <input type="number" name="kontak" value="<?php echo $d['kontak'] ?>" required="required" class="form-control">
+                    </div>
+                    <div class="form-group">
+                      <label>Email</label>
+                      <input type="text" name="email" value="<?php echo $d['email'] ?>" required="required" class="form-control">
                     </div>
                     <div class="form-group">
                       <label>Username</label>
-                      <input type="text" name="username" value="<?php echo $d['karyawan_username'] ?>" required="required" class="form-control" placeholder="Username">
+                      <input type="text" name="username" value="<?php echo $d['username'] ?>" required="required" class="form-control" placeholder="Username">
                     </div>
                     <div class="form-group">
                       <label>Password</label>
@@ -189,7 +193,7 @@
                         <?php
                         $saya = $_SESSION['id'];                  
                         $no=1;
-                        $data = mysqli_query($koneksi,"select * from cuti, tbl_jenis_cuti where user_id='$saya' and jenis_cuti_id=jenis_id");
+                        $data = mysqli_query($koneksi,"select jenis_cuti.jenis_cuti_name as jenis_nama, cuti.* from cuti join jenis_cuti on cuti.jenis_cuti_id = jenis_cuti.jenis_cuti_id where cuti.user_id=$saya");
                         while($d = mysqli_fetch_array($data)){
                           ?>
                           <tr>

@@ -43,7 +43,7 @@
 									$tahun = date('Y');
 									$saya = $_SESSION['id'];									
 									$no=1;
-									$data = mysqli_query($koneksi,"select * from cuti, tbl_jenis_cuti where user_id='$saya' and jenis_cuti_id=jenis_id and year(tanggal_cuti)='$tahun'");
+									$data = mysqli_query($koneksi,"select jenis_cuti.jenis_cuti_name as jenis_nama, cuti.* from cuti join jenis_cuti on cuti.jenis_cuti_id = jenis_cuti.jenis_cuti_id where cuti.user_id=$saya and year(tanggal_cuti)='$tahun'");
 									while($d = mysqli_fetch_array($data)){
 										?>
 										<tr>

@@ -22,7 +22,7 @@
  <?php
  include '../koneksi.php';
  $idcuti = $_GET['id'];
- $data = mysqli_query($koneksi,"select * from cuti, tbl_karyawan, tbl_manajer, tbl_divisi where cuti_id='$idcuti' and user_id=karyawan_id and karyawan_divisi=divisi_id and manajer_id=manajer_id");
+ $data = mysqli_query($koneksi,"select user_manajer.name as manajer_nama, user_manajer.nip ad manajer_nip, user.kontak as karyawan_kontak, divisi.divisi_name as divisi_nama, user.name as karyawan_nama, user.nip as karyawan_nip, role.role_name as karyawan_jabatan, jenis_cuti.jenis_cuti_name as jenis_nama, jenis_cuti.jenis_cuti_jumlah as jenis_jumlah, cuti.* from cuti join user on cuti.user_id = user.id join role on role.role_id on user.role_id join user as user_manajer on cuti.manajer_id = user_manajer.id join divisi on cuti.divisi_id = divisi.divisi_id join jenis_cuti on cuti.jenis_cuti_id = jenis_cuti.jenis_cuti_id where cuti_id=$idcuti");
  $d = mysqli_fetch_assoc($data);     
  ?>
 
@@ -74,18 +74,8 @@
         <th colspan="5" style="text-align: left;">II.JENIS CUTI YANG DIAMBIL</th>
     </tr>
     <tr>
-        <?php
-        $jenis = mysqli_query($koneksi,"select * from tbl_jenis_cuti");
-        while($j = mysqli_fetch_array($jenis)){
-            ?>
-            <td><?php echo $j['jenis_nama'] ?></td>
-            <td><?php echo $j['jenis_jumlah'] ?></td>
-            <?php
-        }
-
-        ?>
-
-        
+        <td><?php echo $d['jenis_nama'] ?></td>
+        <td><?php echo $d['jenis_jumlah'] ?></td>
     </tr>    
 </table>
 <br>

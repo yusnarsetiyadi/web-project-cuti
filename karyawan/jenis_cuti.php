@@ -41,19 +41,19 @@
 									$saya = $_SESSION['id'];	
 									$tahun = date('Y');
 									$no=1;
-									$data = mysqli_query($koneksi,"select * from tbl_jenis_cuti");
+									$data = mysqli_query($koneksi,"select * from jenis_cuti");
 									while($d = mysqli_fetch_array($data)){
-										$jenisid = $d['jenis_id'];										
+										$jenisid = $d['jenis_cuti_id'];										
 
 										?>
 										<tr>
 											<td><?php echo $no++; ?></td>
-											<td><?php echo $d['jenis_nama'] ?></td>	
-											<td><?php echo $d['jenis_jumlah'] ?> Hari</td>
+											<td><?php echo $d['jenis_cuti_name'] ?></td>	
+											<td><?php echo $d['jenis_cuti_jumlah'] ?> Hari</td>
 											<td>												
 												<?php 
 												// cuti diambil
-												$xx = mysqli_query($koneksi,"select sum(jumlah_cuti) as total from cuti where jenis_cuti_id='$jenisid' and user_id='$saya' and year(tanggal_cuti)='$tahun'");	
+												$xx = mysqli_query($koneksi,"select sum(jumlah_cuti) as total from cuti where jenis_cuti_id=$jenisid and user_id=$saya and year(tanggal_cuti)='$tahun'");	
 												$x = mysqli_fetch_assoc($xx);	
 												echo $x['total']
 
@@ -63,10 +63,10 @@
 											<td>
 												<?php 
 												// sisa cuti
-												$xx = mysqli_query($koneksi,"select sum(jumlah_cuti) as total from cuti where jenis_cuti_id='$jenisid' and user_id='$saya' and year(tanggal_cuti)='$tahun'");	
+												$xx = mysqli_query($koneksi,"select sum(jumlah_cuti) as total from cuti where jenis_cuti_id=$jenisid and user_id=$saya and year(tanggal_cuti)='$tahun'");	
 												$x = mysqli_fetch_assoc($xx);	
 												$digunakan = $x['total'];
-												$diberikan = $d['jenis_jumlah'];
+												$diberikan = $d['jenis_cuti_jumlah'];
 
 												$sisa = $diberikan-$digunakan;
 												echo $sisa." Hari";

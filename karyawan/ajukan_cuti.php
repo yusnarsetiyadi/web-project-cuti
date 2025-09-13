@@ -56,20 +56,20 @@
 													<th>Sisa Cuti</th>													
 												</tr>
 												<?php 
-												$cek = mysqli_query($koneksi,"select * from tbl_jenis_cuti");
+												$cek = mysqli_query($koneksi,"select * from jenis_cuti");
 												while($c = mysqli_fetch_array($cek)){
-													$idjenis = $c['jenis_id'];
+													$idjenis = $c['jenis_cuti_id'];
 													$saya = $_SESSION['id'];
 													?>
 													<tr>
-														<td><input type="radio" name="jenis" value="<?php echo $c['jenis_id'] ?>" required></td>
-														<td><?php echo $c['jenis_nama'] ?></td>
+														<td><input type="radio" name="jenis" value="<?php echo $c['jenis_cuti_id'] ?>" required></td>
+														<td><?php echo $c['jenis_cuti_name'] ?></td>
 														<td>
 															<?php 
-															$xx = mysqli_query($koneksi,"select sum(jumlah_cuti) as total from cuti where jenis_cuti_id='$idjenis' and user_id='$saya'");
+															$xx = mysqli_query($koneksi,"select sum(jumlah_cuti) as total from cuti where jenis_cuti_id=$idjenis and user_id=$saya");
 															$x = mysqli_fetch_assoc($xx);
 															$xtotoal = $x['total'];
-															$diberikan = $c['jenis_jumlah'];
+															$diberikan = $c['jenis_cuti_jumlah'];
 
 															$sisa = $diberikan-$xtotoal;
 															echo $sisa;

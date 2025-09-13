@@ -1,6 +1,6 @@
  <!-- /.content-wrapper -->
   <footer class="main-footer">
-    <strong>Copyright &copy; 2021 </strong>
+    <strong>Copyright &copy; 2025 </strong>
     All rights reserved.
     
   </footer>
