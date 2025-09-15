@@ -48,7 +48,7 @@
 									<?php
 									$no=1;	
 									$divisi = $_SESSION['divisi'];								
-									$data = mysqli_query($koneksi,"select * from cuti,tbl_karyawan,tbl_divisi where divisi_id='$divisi' and user_id=karyawan_id and divisi_id=divisi_id order by cuti_id desc");
+									$data = mysqli_query($koneksi,"select user.name as karyawan_nama, divisi.divisi_name as divisi_nama, cuti.* from cuti join user on cuti.user_id = user.id join divisi on cuti.divisi_id = divisi.divisi_id where cuti.divisi_id=$divisi and cuti.supervisor_id is not null order by cuti.cuti_id desc");
 									while($d = mysqli_fetch_array($data)){
 										?>
 										<tr>

@@ -28,6 +28,7 @@
             <th>NIP</th>
             <th>Nama</th>
             <th>Kontak</th>
+            <th>Email</th>
             <th>Jenis Kelamin</th>
             <th>Username</th>
         </tr>
@@ -38,17 +39,18 @@
         include '../koneksi.php';        
         $divisi = $_SESSION['divisi'];        
         $no=1;
-        $data = mysqli_query($koneksi,"select * from tbl_karyawan, tbl_divisi where karyawan_divisi='$divisi' and karyawan_divisi=divisi_id");
+        $data = mysqli_query($koneksi,"select divisi.divisi_name as divisi_nama, user.* from user join divisi on user.divisi_id = divisi.divisi_id where divisi_id=$divisi and role_id=1");
         while($d = mysqli_fetch_array($data)){
             ?>
             <tr>
                 <td><?php echo $no++; ?></td>
                 <td><?php echo $d['divisi_nama'] ?></td>
-                <td><?php echo $d['karyawan_nip'] ?></td>
-                <td><?php echo $d['karyawan_nama'] ?></td>
-                <td><?php echo $d['karyawan_kontak'] ?></td>
-                <td><?php echo $d['karyawan_kelamin'] ?></td>
-                <td><?php echo $d['karyawan_username'] ?></td>                      
+                <td><?php echo $d['nip'] ?></td>
+                <td><?php echo $d['name'] ?></td>
+                <td><?php echo $d['kontak'] ?></td>
+                <td><?php echo $d['email'] ?></td>
+                <td><?php echo $d['kelamin'] ?></td>
+                <td><?php echo $d['username'] ?></td>                      
 
             </tr>
             <?php

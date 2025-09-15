@@ -27,6 +27,7 @@
             <th>Divisi</th>
             <th>NIP / Nama</th>
             <th>Kontak</th>
+            <th>Email</th>
             <th>Tanggal request</th>
             <th>Jenis / Jumlah Cuti</th>            
             <th>Supervisor</th>
@@ -39,7 +40,7 @@
         include '../koneksi.php';
         $divisi = $_SESSION['divisi'];
         $no=1;
-        $data = mysqli_query($koneksi,"select * from cuti, tbl_divisi,tbl_karyawan, tbl_jenis_cuti, tbl_supervisor where divisi_id='$divisi' and divisi_id=divisi_id and jenis_cuti_id=jenis_id and user_id=karyawan_id and supervisor_id=supervisor_id");
+        $data = mysqli_query($koneksi,"select divisi.divisi_name as divisi_nama, user.nip as karyawan_nip, user.name as karyawan_nama, user.kontak as karyawan_kontakm user.email as karyawan_email, user_supervisor.name as supervisor_nama, cuti.* from cuti join divisi on cuti.divisi_id = divisi.divisi_id join user on cuti.user_id = user.id join jenis_cuti on cuti.jenis_cuti_id = jenis_cuti.jenis_cuti_id join user as user_supervisor on cuti.supervisor_id = user_supervisor.id where cuti.divisi_id=$divisi");
         while($d = mysqli_fetch_array($data)){
             ?>
             <tr>
@@ -47,6 +48,7 @@
                 <td><?php echo $d['divisi_nama'] ?></td>
                 <td><?php echo $d['karyawan_nip']. " /".$d['karyawan_nama'] ?></td>                
                 <td><?php echo $d['karyawan_kontak'] ?></td>
+                <td><?php echo $d['karyawan_email'] ?></td>
                 <td><?php echo date('d-m-Y', strtotime($d['tanggal_cuti'])) ?></td>
                 <td>
                 	<?php

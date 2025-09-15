@@ -47,11 +47,11 @@
 
 												<div class="form-group">
 													<label>Jenis Cuti</label>
-													<input type="text" name="jenis" required="required" class="form-control" placeholder="Nama Divisi">
+													<input type="text" name="jenis" required="required" class="form-control" placeholder="Nama Cuti">
 												</div>	
 												<div class="form-group">
 													<label>Jumlah Cuti</label>
-													<input type="number" name="jumlah" required="required" class="form-control" placeholder="Nama Divisi">
+													<input type="number" name="jumlah" required="required" class="form-control" placeholder="Jumlah Hari Cuti">
 												</div>												
 											</div>
 											<div class="modal-footer">
@@ -114,11 +114,11 @@
 																<div class="form-group">
 																	<label>Jenis Cuti</label>
 																	<input type="hidden" name="id" value="<?php echo $d['jenis_cuti_id'] ?>">
-																	<input type="text" name="jenis" required="required" value="<?php echo $d['jenis_cuti_name'] ?>" class="form-control" placeholder="Nama Divisi">
+																	<input type="text" name="jenis" required="required" value="<?php echo $d['jenis_cuti_name'] ?>" class="form-control" placeholder="Nama Cuti">
 																</div>	
 																<div class="form-group">
 																	<label>Jumlah Cuti</label>
-																	<input type="number" value="<?php echo $d['jenis_cuti_jumlah'] ?>" name="jumlah" required="required" class="form-control" placeholder="Nama Divisi">
+																	<input type="number" value="<?php echo $d['jenis_cuti_jumlah'] ?>" name="jumlah" required="required" class="form-control" placeholder="Jumlah Hari Cuti">
 																</div>																	
 															</div>
 															<div class="modal-footer">

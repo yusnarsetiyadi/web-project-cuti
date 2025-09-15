@@ -26,7 +26,7 @@
             <div class="small-box bg-info">
               <div class="inner">
                 <?php
-                $divisi = mysqli_query($koneksi,"select * from tbl_divisi");
+                $divisi = mysqli_query($koneksi,"select * from divisi");
                 $dv = mysqli_num_rows($divisi);
                  ?>
                 <h3><?php echo $dv ?></h3>
@@ -43,7 +43,7 @@
             <div class="small-box bg-success">
               <div class="inner">
                  <?php
-                $jenis_cuti = mysqli_query($koneksi,"select * from tbl_jenis_cuti");
+                $jenis_cuti = mysqli_query($koneksi,"select * from jenis_cuti");
                 $jc = mysqli_num_rows($jenis_cuti);
                  ?>
                 <h3><?php echo $jc ?></h3>                
@@ -60,7 +60,7 @@
             <div class="small-box bg-warning">
               <div class="inner">
                <?php
-               $supervisor = mysqli_query($koneksi,"select * from tbl_supervisor");
+               $supervisor = mysqli_query($koneksi,"select * from user where role_id=2");
                $sv = mysqli_num_rows($supervisor);
                ?>
                <h3><?php echo $sv ?></h3>
@@ -77,7 +77,7 @@
             <div class="small-box bg-danger">
               <div class="inner">
                 <?php
-                $karyawan = mysqli_query($koneksi,"select * from tbl_karyawan");
+                $karyawan = mysqli_query($koneksi,"select * from user where role_id=1");
                 $kr = mysqli_num_rows($karyawan);
                 ?>
                 <h3><?php echo $kr ?></h3>
@@ -97,7 +97,7 @@
 
         <?php
         $saya = $_SESSION['id'];
-        $data = mysqli_query($koneksi,"select * from tbl_manajer, tbl_divisi where manajer_id='$saya' and manajer_divisi=divisi_id");
+        $data = mysqli_query($koneksi,"select divisi.name as divisi_nama, user.* from user join divisi on user.divisi_id = divisi.divisi_id where id=$saya");
         $d = mysqli_fetch_assoc($data);
         ?>
 
@@ -106,7 +106,7 @@
           <div class="card-body box-profile">
             <div class="text-center">
               <?php
-              if($d['manajer_foto']=="manajer_foto.png"){
+              if($d['foto']=="manajer_foto.png"){
                 ?>
                 <img class="profile-user-img img-fluid img-circle"
                 src="../dist/img/manajer_foto.png"
@@ -115,7 +115,7 @@
               }else{
                 ?>
                 <img class="profile-user-img img-fluid img-circle"
-                src="../gambar/user/<?php echo $d['manajer_foto'] ?>"
+                src="../gambar/user/<?php echo $d['foto'] ?>"
                 alt="User profile picture">
                 <?php
               }
@@ -123,15 +123,15 @@
               ?>               
             </div>
 
-            <h3 class="profile-username text-center"><?php echo $d['manajer_nama'] ?></h3>
-            <p class="text-muted text-center"><?php echo $d['manajer_nip'] ?></p>
+            <h3 class="profile-username text-center"><?php echo $d['name'] ?></h3>
+            <p class="text-muted text-center"><?php echo $d['nip'] ?></p>
 
             <ul class="list-group list-group-unbordered mb-3">
               <li class="list-group-item">
                 <b>Divisi</b> <a class="float-right"><?php echo $d['divisi_nama'] ?></a>
               </li>
               <li class="list-group-item">
-                <b>Kontak</b> <a class="float-right"><?php echo $d['manajer_kontak'] ?></a>
+                <b>Kontak</b> <a class="float-right"><?php echo $d['kontak'] ?></a>
               </li>                              
             </ul>
             <center>
@@ -153,15 +153,19 @@
                     <div class="modal-body">
                       <div class="form-group">
                         <label>Alamat</label>
-                        <textarea class="form-control" name="alamat"><?php echo $d['manajer_alamat'] ?></textarea>
+                        <textarea class="form-control" name="alamat"><?php echo $d['alamat'] ?></textarea>
                       </div>
                       <div class="form-group">
                         <label>Kontak</label>
-                        <input type="number" name="kontak" value="<?php echo $d['manajer_kontak'] ?>" required="required" class="form-control">
+                        <input type="number" name="kontak" value="<?php echo $d['kontak'] ?>" required="required" class="form-control">
+                      </div>
+                      <div class="form-group">
+                        <label>Email</label>
+                        <input type="text" name="email" value="<?php echo $d['email'] ?>" required="required" class="form-control">
                       </div>
                       <div class="form-group">
                         <label>Username</label>
-                        <input type="text" name="username" value="<?php echo $d['manajer_username'] ?>" required="required" class="form-control" placeholder="Username">
+                        <input type="text" name="username" value="<?php echo $d['username'] ?>" required="required" class="form-control" placeholder="Username">
                       </div>
                       <div class="form-group">
                         <label>Password</label>
@@ -209,38 +213,43 @@
                       <tr>
                         <th>Nama</th>
                         <th width="1%">:</th>
-                        <td><?php echo $d['manajer_nama'] ?></td>
+                        <td><?php echo $d['name'] ?></td>
                       </tr>
                       <tr>
                         <th>NIK/NIP</th>
                         <th width="1%">:</th>
-                        <td><?php echo $d['manajer_nip'] ?></td>
+                        <td><?php echo $d['nip'] ?></td>
                       </tr>
                       <tr>
                         <th>Jenis Kelamin</th>
                         <th width="1%">:</th>
-                        <td><?php echo $d['manajer_kelamin'] ?></td>
+                        <td><?php echo $d['kelamin'] ?></td>
                       </tr>
                       <tr>
                         <th>Kontak</th>
                         <th width="1%">:</th>
-                        <td><?php echo $d['manajer_kontak'] ?></td>
+                        <td><?php echo $d['kontak'] ?></td>
+                      </tr>
+                      <tr>
+                        <th>Email</th>
+                        <th width="1%">:</th>
+                        <td><?php echo $d['email'] ?></td>
                       </tr>
                       <tr>
                         <th>Alamat</th>
                         <th width="1%">:</th>
-                        <td><?php echo $d['manajer_alamat'] ?></td>
+                        <td><?php echo $d['alamat'] ?></td>
                       </tr>
                       <tr>
                         <th>Username</th>
                         <th width="1%">:</th>
-                        <td><?php echo $d['manajer_username'] ?></td>
+                        <td><?php echo $d['username'] ?></td>
                       </tr>
                       <tr>
                         <th>Tanda Tangan</th>
                         <th width="1%">:</th>
                         <td>
-                          <img style="width: 90px; height: 90px;" src="../gambar/tanda_tangan/<?php echo $d['manajer_tanda_tangan'] ?>">
+                          <img style="width: 90px; height: 90px;" src="../gambar/tanda_tangan/<?php echo $d['tanda_tangan'] ?>">
                         </td>
                       </tr> 
 

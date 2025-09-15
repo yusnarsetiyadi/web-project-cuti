@@ -72,7 +72,7 @@
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
           <?php
-          if($d['foto']=="foto.png"){
+          if($d['foto']=="admin_foto.png"){
             ?>
             <img src="../dist/img/foto.png" class="img-circle elevation-2" alt="User Image">
             <?php

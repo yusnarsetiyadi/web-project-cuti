@@ -36,6 +36,7 @@
 									<th>NIP</th>
 									<th>Nama</th>
 									<th>Kontak</th>
+									<th>Email</th>
 									<th>Jenis Kelamin</th>
 									<th>Username</th>
 									<th>Foto</th>
@@ -46,27 +47,28 @@
 								<?php
 								$no=1;
 								$divisi = $_SESSION['divisi'];
-								$data = mysqli_query($koneksi,"select * from tbl_supervisor, tbl_divisi where supervisor_divisi='$divisi' and supervisor_divisi=divisi_id");
+								$data = mysqli_query($koneksi,"select divisi.divisi_name as divisi_nama, user.* from user join divisi on user.divisi_id = divisi.divisi_id where divisi_id=$divisi and role_id=2");
 								while($d = mysqli_fetch_array($data)){
 									?>
 									<tr>
 										<td><?php echo $no++; ?></td>
 										<td><?php echo $d['divisi_nama'] ?></td>
-										<td><?php echo $d['supervisor_nip'] ?></td>
-										<td><?php echo $d['supervisor_nama'] ?></td>
-										<td><?php echo $d['supervisor_kontak'] ?></td>
-										<td><?php echo $d['supervisor_kelamin'] ?></td>
-										<td><?php echo $d['supervisor_username'] ?></td>                		
+										<td><?php echo $d['nip'] ?></td>
+										<td><?php echo $d['name'] ?></td>
+										<td><?php echo $d['kontak'] ?></td>
+										<td><?php echo $d['email'] ?></td>
+										<td><?php echo $d['kelamin'] ?></td>
+										<td><?php echo $d['username'] ?></td>                		
 										<td>
 											<?php 
-											if($d['supervisor_foto']=="supervisor_foto.png"){
+											if($d['foto']=="supervisor_foto.png"){
 												?>
 												<!--<img src="../dist/img/supervisor_foto.png" class="img-circle elevation-2" alt="User Image"> -->
 												<img src="../dist/img/supervisor_foto.png" class="img-thumbnail" alt="Cinque Terre" width="60px" height="40px"> 
 												<?php
 											}else{
 												?>
-												<img src="../gambar/user/<?php echo $d['supervisor_foto'] ?>" class="img-thumbnail" alt="Cinque Terre" width="60px" height="40px"> 
+												<img src="../gambar/user/<?php echo $d['foto'] ?>" class="img-thumbnail" alt="Cinque Terre" width="60px" height="40px"> 
 												<?php
 											}
 											?>
@@ -74,7 +76,7 @@
 										</td> 
 										<td>
 											<center>
-												<a href="supervisor_detail.php?id=<?php echo $d['supervisor_id'] ?>" class="btn btn-sm btn-success"><i class="fas fa-search"></i></a>
+												<a href="supervisor_detail.php?id=<?php echo $d['id'] ?>" class="btn btn-sm btn-success"><i class="fas fa-search"></i></a>
 											
 											</center>
 										</td>

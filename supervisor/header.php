@@ -107,7 +107,7 @@
                 Karyawan
                 <?php
                 $divisi = $_SESSION['divisi'];
-                $karyawan = mysqli_query($koneksi,"select * from user where divisi_id=$divisi");
+                $karyawan = mysqli_query($koneksi,"select * from user where divisi_id=$divisi and role_id=1");
                 $k = mysqli_num_rows($karyawan);
                  ?>
                 <span class="badge badge-info right"><?php echo $k ?></span>

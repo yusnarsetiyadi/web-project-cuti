@@ -158,7 +158,7 @@
           <div class="card-body box-profile">
             <div class="text-center">
               <?php
-              if($d['foto']=="foto.png"){
+              if($d['foto']=="admin_foto.png"){
                 ?>
                 <img class="profile-user-img img-fluid img-circle"
                 src="../dist/img/foto.png"

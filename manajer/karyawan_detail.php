@@ -27,7 +27,7 @@
 
           <?php
           $idkaryawan = $_GET['id'];
-          $data = mysqli_query($koneksi,"select * from tbl_karyawan, tbl_divisi where karyawan_id='$idkaryawan' and karyawan_divisi=divisi_id");
+          $data = mysqli_query($koneksi,"select divisi.divisi_name as divisi_nama, user.* from user join divisi on user.divisi_id = divisi.divisi_id where id=$idkaryawan");
           $d = mysqli_fetch_assoc($data);
           ?>
 
@@ -36,7 +36,7 @@
             <div class="card-body box-profile">
               <div class="text-center">
                 <?php
-                if($d['karyawan_foto']=="karyawan_foto.png"){
+                if($d['foto']=="karyawan_foto.png"){
                   ?>
                   <img class="profile-user-img img-fluid img-circle"
                   src="../dist/img/karyawan_foto.png"
@@ -45,7 +45,7 @@
                 }else{
                   ?>
                   <img class="profile-user-img img-fluid img-circle"
-                  src="../gambar/user/<?php echo $d['karyawan_foto'] ?>"
+                  src="../gambar/user/<?php echo $d['foto'] ?>"
                   alt="User profile picture">
                   <?php
                 }
@@ -53,8 +53,8 @@
                 ?>               
               </div>
 
-              <h3 class="profile-username text-center"><?php echo $d['karyawan_nama'] ?></h3>
-              <p class="text-muted text-center"><?php echo $d['karyawan_nip'] ?></p>
+              <h3 class="profile-username text-center"><?php echo $d['name'] ?></h3>
+              <p class="text-muted text-center"><?php echo $d['nip'] ?></p>
 
               <ul class="list-group list-group-unbordered mb-3">
                 <li class="list-group-item">
@@ -101,7 +101,7 @@
                             <?php
                             $idkaryawan = $_GET['id'];                  
                             $no=1;
-                            $data = mysqli_query($koneksi,"select * from cuti, tbl_jenis_cuti where user_id='$idkaryawan' and jenis_cuti_id=jenis_id");
+                            $data = mysqli_query($koneksi,"select jenis_cuti.jenis_cuti_name as jenis_nama, cuti.* from cuti join jenis_cuti on cuti.jenis_cuti_id = jenis_cuti.jenis_cuti_id where cuti.user_id=$idkaryawan");
                             while($d = mysqli_fetch_array($data)){
                               ?>
                               <tr>

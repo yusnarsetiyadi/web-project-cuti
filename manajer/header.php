@@ -63,7 +63,7 @@
      <?php
     $saya = $_SESSION['id'];
     $divisi = $_SESSION['divisi'];
-    $data = mysqli_query($koneksi,"select * from tbl_manajer where manajer_id='$saya'");
+    $data = mysqli_query($koneksi,"select * from user where id=$saya");
     $d = mysqli_fetch_assoc($data);
      ?>
 
@@ -73,19 +73,19 @@
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
           <?php
-          if($d['manajer_foto']=="manajer_foto.png"){
+          if($d['foto']=="manajer_foto.png"){
             ?>
             <img src="../dist/img/manajer_foto.png" class="img-circle elevation-2" alt="User Image">
             <?php
           }else{
             ?>
-            <img src="../gambar/user/<?php echo $d['manajer_foto'] ?>" class="img-circle elevation-2" alt="User Image">
+            <img src="../gambar/user/<?php echo $d['foto'] ?>" class="img-circle elevation-2" alt="User Image">
             <?php
           }
           ?>
         </div>
         <div class="info">
-          <a href="#" class="d-block"><?php echo $d['manajer_nama'] ?></a>
+          <a href="#" class="d-block"><?php echo $d['name'] ?></a>
         </div>
       </div>
 
@@ -107,12 +107,12 @@
             <a href="supervisor.php" class="nav-link">              
               <i class="nav-icon fas fa-user-graduate"></i>
               <p>
-                 <?php
-                $supervisor = mysqli_query($koneksi,"select * from tbl_supervisor where supervisor_divisi='$divisi'");
+                Supervisor             
+                <?php
+                $supervisor = mysqli_query($koneksi,"select * from user where divisi_id=$divisi and role_id=2");
                 $sp = mysqli_num_rows($supervisor);
-                 ?>
+                ?>
                 <span class="badge badge-info right"><?php echo $sp ?></span>
-                Supervisor                
               </p>
             </a>
           </li>
@@ -122,10 +122,9 @@
               <p>
                 Karyawan
                 <?php
-
-                $karyawan = mysqli_query($koneksi,"select * from tbl_karyawan where karyawan_divisi='$divisi'");
+                $karyawan = mysqli_query($koneksi,"select * from user where divisi_id=$divisi and role_id=1");
                 $k = mysqli_num_rows($karyawan);
-                 ?>
+                ?>
                 <span class="badge badge-info right"><?php echo $k ?></span>
               </p>
             </a>

@@ -27,7 +27,7 @@
 
           <?php
           $idsupervisor = $_GET['id'];
-          $data = mysqli_query($koneksi,"select * from tbl_supervisor, tbl_divisi where supervisor_id='$idsupervisor' and supervisor_divisi=divisi_id");
+          $data = mysqli_query($koneksi,"select divisi.divisi_name as divisi_nama, user.* from user join divisi on user.divisi_id = divisi.divisi_id where id=$idsupervisor");
           $d = mysqli_fetch_assoc($data);
           ?>
 
@@ -36,7 +36,7 @@
             <div class="card-body box-profile">
               <div class="text-center">
                 <?php
-                if($d['supervisor_foto']=="supervisor_foto.png"){
+                if($d['foto']=="supervisor_foto.png"){
                   ?>
                   <img class="profile-user-img img-fluid img-circle"
                   src="../dist/img/supervisor_foto.png"
@@ -45,7 +45,7 @@
                 }else{
                   ?>
                   <img class="profile-user-img img-fluid img-circle"
-                  src="../gambar/user/<?php echo $d['supervisor_foto'] ?>"
+                  src="../gambar/user/<?php echo $d['foto'] ?>"
                   alt="User profile picture">
                   <?php
                 }
@@ -53,18 +53,21 @@
                 ?>               
               </div>
 
-              <h3 class="profile-username text-center"><?php echo $d['supervisor_nama'] ?></h3>
-              <p class="text-muted text-center"><?php echo $d['supervisor_nip'] ?></p>
+              <h3 class="profile-username text-center"><?php echo $d['name'] ?></h3>
+              <p class="text-muted text-center"><?php echo $d['nip'] ?></p>
 
               <ul class="list-group list-group-unbordered mb-3">
                 <li class="list-group-item">
                   <b>Divisi</b> <a class="float-right"><?php echo $d['divisi_nama'] ?></a>
                 </li>
                 <li class="list-group-item">
-                  <b>Kelamin</b> <a class="float-right"><?php echo $d['supervisor_kelamin'] ?></a>
+                  <b>Kelamin</b> <a class="float-right"><?php echo $d['kelamin'] ?></a>
                 </li>
-                 <li class="list-group-item">
-                  <b>Kontak</b> <a class="float-right"><?php echo $d['supervisor_kontak'] ?></a>
+                <li class="list-group-item">
+                  <b>Kontak</b> <a class="float-right"><?php echo $d['kontak'] ?></a>
+                </li>  
+                <li class="list-group-item">
+                  <b>Email</b> <a class="float-right"><?php echo $d['email'] ?></a>
                 </li>                              
               </ul>
             </div>
@@ -99,6 +102,7 @@
                               <th>NIP</th>                 
                               <th>Nama</th>                 
                               <th>Kontak</th>                                    
+                              <th>Email</th>                                    
                               <th>Kelamin</th>                                    
                             </tr>
                           </thead>
@@ -106,15 +110,16 @@
                             <?php
                             $divisi = $d['divisi_id'];                  
                             $no=1;
-                            $data = mysqli_query($koneksi,"select * from tbl_karyawan where karyawan_divisi='$divisi'");
+                            $data = mysqli_query($koneksi,"select * from user where divisi_id=$divisi and role_id=1");
                             while($d = mysqli_fetch_array($data)){
                               ?>
                               <tr>
                                 <td><?php echo $no++; ?></td>
-                                <td><?php echo $d['karyawan_nip'] ?></td> 
-                                <td><?php echo $d['karyawan_nama'] ?></td> 
-                                <td><?php echo $d['karyawan_kontak'] ?></td> 
-                                <td><?php echo $d['karyawan_kelamin'] ?></td> 
+                                <td><?php echo $d['nip'] ?></td> 
+                                <td><?php echo $d['name'] ?></td> 
+                                <td><?php echo $d['kontak'] ?></td> 
+                                <td><?php echo $d['email'] ?></td> 
+                                <td><?php echo $d['kelamin'] ?></td> 
 
                               </tr>
                               <?php
