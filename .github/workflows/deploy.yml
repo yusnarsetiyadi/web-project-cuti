@@ -46,8 +46,4 @@ jobs:
           password: ${{ secrets.VPS_PASS }}
           port: ${{ secrets.VPS_PORT }}
           script: |
-            cat > /var/www/html/deploy/projectcuti/koneksi.php <<EOL
-            <?php
-            ${{ secrets.DB_CONNECTION }}
-            ?>
-            EOL
+            sed -i "s|mysqli_connect.*;|${{ secrets.DB_CONNECTION }};|" /var/www/html/deploy/projectcuti/koneksi.php
