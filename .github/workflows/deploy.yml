@@ -1,0 +1,53 @@
+name: Deploy PHP App to VPS
+
+on:
+   push:
+      branches: [ "master" ]
+
+jobs:
+   deploy:
+      runs-on: ubuntu-latest
+
+      steps:
+
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Deploy to VPS
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          password: ${{ secrets.VPS_PASS }}
+          port: ${{ secrets.VPS_PORT }}
+          script: |
+            echo "=== Remove old files ==="
+            rm -rf /var/www/html/deploy/projectcuti/*
+
+            echo "=== Upload new files ==="
+            mkdir -p /var/www/html/deploy/projectcuti
+            exit
+
+      - name: Upload files to VPS
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          password: ${{ secrets.VPS_PASS }}
+          port: ${{ secrets.VPS_PORT }}
+          source: "./"
+          target: "/var/www/html/deploy/projectcuti"
+
+      - name: Update koneksi.php
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          password: ${{ secrets.VPS_PASS }}
+          port: ${{ secrets.VPS_PORT }}
+          script: |
+            cat > /var/www/html/deploy/projectcuti/koneksi.php <<EOL
+            <?php
+            ${{ secrets.DB_CONNECTION }}
+            ?>
+            EOL
