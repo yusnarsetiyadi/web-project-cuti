@@ -27,12 +27,12 @@
  ?>
 
  <div style="float:right;display:block;width:200px">  
-    <p>Kupang <?php echo date('d-m-Y') ?></p>
+    <p>Jakarta Barat, <?php echo date('d-m-Y') ?></p>
     <p>Kepada <br>
         Yth,<br>
-        Kodim III-15 Kupang<br>        
-        Di <br>
-        Kupang
+        HRD PT. Delta Tekno Perkasa<br>        
+        Di 
+        Jakarta Barat
     </p>
 </div>
 

@@ -40,7 +40,7 @@
         include '../koneksi.php';
         $divisi = $_SESSION['divisi'];
         $no=1;
-        $data = mysqli_query($koneksi,"select divisi.divisi_name as divisi_nama, user.nip as karyawan_nip, user.name as karyawan_nama, user.kontak as karyawan_kontakm user.email as karyawan_email, user_supervisor.name as supervisor_nama, cuti.* from cuti join divisi on cuti.divisi_id = divisi.divisi_id join user on cuti.user_id = user.id join jenis_cuti on cuti.jenis_cuti_id = jenis_cuti.jenis_cuti_id join user as user_supervisor on cuti.supervisor_id = user_supervisor.id where cuti.divisi_id=$divisi");
+        $data = mysqli_query($koneksi,"select divisi.divisi_name as divisi_nama, user.nip as karyawan_nip, user.name as karyawan_nama, user.kontak as karyawan_kontakm user.email as karyawan_email, user_supervisor.name as supervisor_nama, cuti.* from cuti join divisi on cuti.divisi_id = divisi.divisi_id join user on cuti.user_id = user.id join jenis_cuti on cuti.jenis_cuti_id = jenis_cuti.jenis_cuti_id join user as user_supervisor on cuti.supervisor_id = user_supervisor.id where cuti.divisi_id=$divisi and cuti.supervisor_status='Terima'");
         while($d = mysqli_fetch_array($data)){
             ?>
             <tr>

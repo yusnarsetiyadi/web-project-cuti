@@ -11,7 +11,7 @@ $allowed =  array('gif','png','jpg','jpeg');
 $filename = $_FILES['foto']['name'];
 
 if($filename == ""){
-	mysqli_query($koneksi, "INSERT INTO admin VALUES(NULL,'$nama','$kontak','$username','$password','foto.png','$email')")or die(mysqli_error($koneksi));
+	mysqli_query($koneksi, "INSERT INTO admin VALUES(NULL,'$nama','$kontak','$username','$password','admin_foto.png','$email')")or die(mysqli_error($koneksi));
 	header("location:admin.php?alert=tambah");
 }else{
 	$ext = pathinfo($filename, PATHINFO_EXTENSION);

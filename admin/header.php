@@ -74,7 +74,7 @@
           <?php
           if($d['foto']=="admin_foto.png"){
             ?>
-            <img src="../dist/img/foto.png" class="img-circle elevation-2" alt="User Image">
+            <img src="../dist/img/admin_foto.png" class="img-circle elevation-2" alt="User Image">
             <?php
           }else{
             ?>

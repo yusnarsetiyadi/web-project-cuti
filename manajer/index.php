@@ -97,7 +97,7 @@
 
         <?php
         $saya = $_SESSION['id'];
-        $data = mysqli_query($koneksi,"select divisi.name as divisi_nama, user.* from user join divisi on user.divisi_id = divisi.divisi_id where id=$saya");
+        $data = mysqli_query($koneksi,"select divisi.divisi_name as divisi_nama, user.* from user join divisi on user.divisi_id = divisi.divisi_id where id=$saya");
         $d = mysqli_fetch_assoc($data);
         ?>
 

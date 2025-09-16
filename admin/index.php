@@ -95,7 +95,7 @@
             <div class="small-box bg-success">
               <div class="inner">
                 <?php
-                $ctm = mysqli_query($koneksi,"select * from cuti where manajer_dtatus='Terima'");
+                $ctm = mysqli_query($koneksi,"select * from cuti where manajer_status='Terima'");
                 $c = mysqli_num_rows($ctm);
                 ?>
                 <h3><?php echo $c ?></h3>
@@ -161,7 +161,7 @@
               if($d['foto']=="admin_foto.png"){
                 ?>
                 <img class="profile-user-img img-fluid img-circle"
-                src="../dist/img/foto.png"
+                src="../dist/img/admin_foto.png"
                 alt="User profile picture">
                 <?php
               }else{

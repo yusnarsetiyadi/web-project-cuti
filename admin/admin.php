@@ -113,7 +113,7 @@
 											if($d['foto']=="admin_foto.png"){
 												?>
 												<img
-												src="../dist/img/foto.png" class="img-thumbnail" alt="Cinque Terre" width="60px" height="40px"> 
+												src="../dist/img/admin_foto.png" class="img-thumbnail" alt="Cinque Terre" width="60px" height="40px"> 
 												<?php 
 											}else{ 
 												?> 

@@ -22,17 +22,17 @@
  <?php
  include '../koneksi.php';
  $idcuti = $_GET['id'];
- $data = mysqli_query($koneksi,"select user_manajer.name as manajer_nama, user_manajer.nip ad manajer_nip, user.kontak as karyawan_kontak, divisi.divisi_name as divisi_nama, user.name as karyawan_nama, user.nip as karyawan_nip, role.role_name as karyawan_jabatan, jenis_cuti.jenis_cuti_name as jenis_nama, jenis_cuti.jenis_cuti_jumlah as jenis_jumlah, cuti.* from cuti join user on cuti.user_id = user.id join role on role.role_id on user.role_id join user as user_manajer on cuti.manajer_id = user_manajer.id join divisi on cuti.divisi_id = divisi.divisi_id join jenis_cuti on cuti.jenis_cuti_id = jenis_cuti.jenis_cuti_id where cuti_id=$idcuti");
+ $data = mysqli_query($koneksi,"select user_manajer.name as manajer_nama, user_manajer.nip as manajer_nip, user.kontak as karyawan_kontak, divisi.divisi_name as divisi_nama, user.name as karyawan_nama, user.nip as karyawan_nip, role.role_name as karyawan_jabatan, jenis_cuti.jenis_cuti_name as jenis_nama, jenis_cuti.jenis_cuti_jumlah as jenis_jumlah, cuti.* from cuti join user on cuti.user_id = user.id join role on role.role_id = user.role_id join user as user_manajer on cuti.manajer_id = user_manajer.id join divisi on cuti.divisi_id = divisi.divisi_id join jenis_cuti on cuti.jenis_cuti_id = jenis_cuti.jenis_cuti_id where cuti_id=$idcuti");
  $d = mysqli_fetch_assoc($data);     
  ?>
 
  <div style="float:right;display:block;width:200px">  
-    <p>Kupang <?php echo date('d-m-Y') ?></p>
+    <p>Jakarta Barat, <?php echo date('d-m-Y') ?></p>
     <p>Kepada <br>
         Yth,<br>
-        Kodim III-15 Kupang<br>        
-        Di <br>
-        Kupang
+        HRD PT. Delta Tekno Perkasa<br>        
+        Di 
+        Jakarta Barat
     </p>
 </div>
 

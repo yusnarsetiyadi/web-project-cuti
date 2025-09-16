@@ -47,7 +47,7 @@
 								<?php
 								$no=1;
 								$divisi = $_SESSION['divisi'];
-								$data = mysqli_query($koneksi,"select divisi.divisi_name as divisi_nama, user.* from user join divisi on user.divisi_id = divisi.divisi_id where divisi_id=$divisi and role_id=2");
+								$data = mysqli_query($koneksi,"select divisi.divisi_name as divisi_nama, user.* from user join divisi on user.divisi_id = divisi.divisi_id where user.divisi_id=$divisi and user.role_id=2");
 								while($d = mysqli_fetch_array($data)){
 									?>
 									<tr>
