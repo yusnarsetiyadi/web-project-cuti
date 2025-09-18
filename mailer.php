@@ -1,6 +1,6 @@
 <?php
 function sendEmail($recipient, $subject, $bodyHtml) {
-    // URL endpoint API
+    // URL endpoint API omailer
     $url = "https://yusnar.my.id/omailer/send";
 
     // Data form-data
