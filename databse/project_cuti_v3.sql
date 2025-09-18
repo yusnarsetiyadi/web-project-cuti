@@ -79,7 +79,7 @@ CREATE TABLE `cuti` (
   CONSTRAINT `fk_manajer` FOREIGN KEY (`manajer_id`) REFERENCES `user` (`id`),
   CONSTRAINT `fk_supervisor` FOREIGN KEY (`supervisor_id`) REFERENCES `user` (`id`),
   CONSTRAINT `fk_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -88,7 +88,7 @@ CREATE TABLE `cuti` (
 
 LOCK TABLES `cuti` WRITE;
 /*!40000 ALTER TABLE `cuti` DISABLE KEYS */;
-INSERT INTO `cuti` VALUES (1,1,1,1,'2025-09-13','2025-09-15','2025-09-16',1,'males','jakarta',7,'Tolak','nanti dulu',7,'Tolak','nanti dulu'),(2,1,1,1,'2025-09-16','2025-09-17','2025-09-18',1,'pulang kampung','solo',7,'Terima','ok',10,'Terima','okee boleh'),(3,1,1,2,'2025-09-16','2025-09-20','2025-09-22',2,'tidur','jogja',7,'Terima','izin ke manajer dulu',NULL,NULL,NULL);
+INSERT INTO `cuti` VALUES (1,1,1,1,'2025-09-13','2025-09-15','2025-09-16',1,'males','jakarta',7,'Tolak','nanti dulu',7,'Tolak','nanti dulu'),(2,1,1,1,'2025-09-16','2025-09-17','2025-09-18',1,'pulang kampung','solo',7,'Terima','ok',10,'Terima','okee boleh'),(3,1,1,2,'2025-09-16','2025-09-20','2025-09-22',2,'tidur','jogja',7,'Terima','izin ke manajer dulu',NULL,NULL,NULL),(4,3,1,5,'2025-09-18','2025-09-19','2025-09-20',1,'apa aja','papua',9,'Tolak','ga boleh',9,'Tolak','ga boleh'),(5,3,1,5,'2025-09-18','2025-09-29','2025-09-30',1,'mau nyari sampingan','bandung',9,'Terima','oke lanjut ke manajer',12,'Tolak','nanti dulu, bulan depan aja'),(6,3,1,5,'2025-09-18','2025-10-01','2025-10-03',2,'mau liburan pak, pusing','bali',9,'Terima','okk',12,'Terima','ok, jangan kelamaan');
 /*!40000 ALTER TABLE `cuti` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -214,4 +214,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-09-16 16:16:01
+-- Dump completed on 2025-09-18 15:45:56

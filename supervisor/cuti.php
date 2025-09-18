@@ -51,7 +51,7 @@
 									<?php
 									$no=1;
 									$divisi = $_SESSION['divisi'];
-									$data = mysqli_query($koneksi,"select user.name as karyawan_nama, jenis_cuti.jenis_cuti_name as jenis_nama, cuti.* from cuti join user on cuti.user_id = user.id join jenis_cuti on cuti.jenis_cuti_id = jenis_cuti.jenis_cuti_id where cuti.divisi_id=$divisi order by cuti_id desc");
+									$data = mysqli_query($koneksi,"select user.email as karyawan_email, user.name as karyawan_nama, jenis_cuti.jenis_cuti_name as jenis_nama, cuti.* from cuti join user on cuti.user_id = user.id join jenis_cuti on cuti.jenis_cuti_id = jenis_cuti.jenis_cuti_id where cuti.divisi_id=$divisi order by cuti_id desc");
 									while($d = mysqli_fetch_array($data)){
 										?>
 										<tr>
@@ -102,6 +102,8 @@
 																	<div class="form-group">
 																		<label>Status</label>
 																		<input type="hidden" name="id" value="<?php echo $d['cuti_id'] ?>">
+																		<input type="hidden" name="karyawan_nama" value="<?php echo $d['karyawan_nama'] ?>">
+																		<input type="hidden" name="karyawan_email" value="<?php echo $d['karyawan_email'] ?>">
 																		<select class="form-control" name="status" required>
 																			<option value="">--Pilih--</option>
 																			<option <?php if($d['supervisor_status']=="Terima"){echo "selected='selected'";} ?> value="Terima">Terima</option>
