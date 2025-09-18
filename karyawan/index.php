@@ -186,7 +186,7 @@
                           <th>Tanggal Request</th>                                                            
                           <th>Jumlah Cuti</th>
                           <th>Status Supervisor</th>
-                          <th>Status manajer</th>
+                          <th>Status Manajer</th>
                         </tr>
                       </thead>
                       <tbody>
