@@ -84,7 +84,7 @@
     <tr>
         <td><?php echo $d['jenis_cuti_name'] ?></td>
         <td><?php echo $d['jenis_cuti_jumlah'] ?></td>
-    </tr> 
+    </tr>    
 </table>
 <br>
 
