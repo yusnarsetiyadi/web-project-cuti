@@ -22,7 +22,33 @@
  <?php
  include '../koneksi.php';
  $idcuti = $_GET['id'];
- $data = mysqli_query($koneksi,"select user_supervisor.name as supervisor_nama, user_supervisor.nip as supervisor_nip, user.created_at as masuk_kerja, user.name as karyawan_nama, user.nip as karyawan_nip, role.role_name as karyawan_jabatan, user.kontak as karyawan_kontak, divisi.divisi_name as divisi_nama, cuti.*, user_manajer.name as manajer_nama, user_manajer.nip as manajer_nip, jenis_cuti.jenis_cuti_name as jenis_cuti_name, jenis_cuti.jenis_cuti_jumlah as jenis_cuti_jumlah from cuti join user on cuti.user_id = user.id join role on user.role_id = role.role_id join divisi on cuti.divisi_id = divisi.divisi_id join jenis_cuti on cuti.jenis_cuti_id = jenis_cuti.jenis_cuti_id join user as user_manajer on cuti.manajer_id = user_manajer.id join user as user_supervisor on cuti.supervisor_id = user_supervisor.id where cuti_id=$idcuti");
+ $data = mysqli_query($koneksi, "
+    SELECT 
+        cuti.*,
+        user.created_at                 AS masuk_kerja,
+        user.name                       AS karyawan_nama,
+        user.nip                        AS karyawan_nip,
+        role.role_name                  AS karyawan_jabatan,
+        user.kontak                     AS karyawan_kontak,
+        user.tanda_tangan               AS karyawan_tanda_tangan,
+        user_supervisor.name            AS supervisor_nama,
+        user_supervisor.nip             AS supervisor_nip,
+        user_supervisor.tanda_tangan    AS supervisor_tanda_tangan,
+        user_manajer.name               AS manajer_nama,
+        user_manajer.nip                AS manajer_nip,
+        user_manajer.tanda_tangan       AS manajer_tanda_tangan,
+        jenis_cuti.jenis_cuti_name      AS jenis_cuti_name,
+        jenis_cuti.jenis_cuti_jumlah    AS jenis_cuti_jumlah,
+        divisi.divisi_name              AS divisi_nama
+    FROM cuti
+    JOIN user ON cuti.user_id = user.id
+    JOIN role ON user.role_id = role.role_id
+    JOIN divisi ON cuti.divisi_id = divisi.divisi_id
+    JOIN jenis_cuti ON cuti.jenis_cuti_id = jenis_cuti.jenis_cuti_id
+    JOIN user AS user_manajer ON cuti.manajer_id = user_manajer.id
+    JOIN user AS user_supervisor ON cuti.supervisor_id = user_supervisor.id
+    WHERE cuti_id = $idcuti
+ ");
  $d = mysqli_fetch_assoc($data);     
  ?>
 
@@ -146,17 +172,27 @@
         <td colspan="5"><?php echo $d['alamat_cuti'] ?></td>
         <td colspan="2">
             <center>Hormat Saya</center>
-            <br>
-            <br>
-            <br>            
-            <br>
+            <?php if($d['karyawan_tanda_tangan']!=""){ ?>
+                <div style="width:200px; height:100px; 
+                            display:flex; align-items:center; justify-content:center; margin:auto;">
+                    <img src="../gambar/tanda_tangan/<?php echo $d['karyawan_tanda_tangan'] ?>" 
+                        alt="Tanda Tangan"
+                        style="max-width:180px; max-height:90px; object-fit:contain;">
+                </div>
+            <?php }else{ ?>
+                <div style="width:200px; height:100px; 
+                            display:flex; align-items:center; justify-content:center; margin:auto;">
+                    <img src="../dist/img/logo_delta.png" 
+                        alt="Logo Delta"
+                        style="max-width:150px; max-height:70px; object-fit:contain;">
+                </div>
+            <?php } ?>
             <center>
                 <u><?php echo $d['karyawan_nama'] ?></u><br>
                 <?php echo $d['karyawan_nip'] ?>
             </center>
         </td>
     </tr>
-
 </table>
 <br>
 <br>
@@ -172,27 +208,62 @@
         <th colspan="5" style="text-align: left;">VII. PERTIMBANGAN ATASAN LANGSUNG</th>        
     </tr>
     <tr>
-     <td>DISETUJUI</td>
+     <td>DISETUJUI****</td>
      <td>PERUBAHAN****</td>
      <td>DITANGGUHKAN****</td>
      <td>TIDAK DISETUJUI****</td>
  </tr>
 
  <tr>
-    <td><br></td>    
+    <td>
+        <?php
+        if ($d['supervisor_status']=="Terima"){
+            ?>
+                <center>&#10003;</center>
+            <?php
+        }else{
+            ?>
+            <br>
+            <?php
+        }
+        ?>
+    </td>    
     <td></td>    
     <td></td>    
-    <td></td>    
+    <td>
+        <?php
+        if ($d['supervisor_status']=="Tolak"){
+            ?>
+                <center>&#10003;</center>
+            <?php
+        }else{
+            ?>
+            <br>
+            <?php
+        }
+        ?>
+    </td>    
 </tr>
 
 <tr>
-    <td colspan="3"></td>
+    <td colspan="3"><?php echo $d['supervisor_keterangan'] ?></td>
     <td>
         <center>Supervisor Divisi <?php echo $d['divisi_nama'] ?></center>
-        <br>
-        <br>
-        <br>
-        <br>
+        <?php if($d['supervisor_tanda_tangan']!=""){ ?>
+            <div style="width:200px; height:100px; 
+                        display:flex; align-items:center; justify-content:center; margin:auto;">
+                <img src="../gambar/tanda_tangan/<?php echo $d['supervisor_tanda_tangan'] ?>" 
+                    alt="Tanda Tangan"
+                    style="max-width:180px; max-height:90px; object-fit:contain;">
+            </div>
+        <?php }else{ ?>
+            <div style="width:200px; height:100px; 
+                        display:flex; align-items:center; justify-content:center; margin:auto;">
+                <img src="../dist/img/logo_delta.png" 
+                    alt="Logo Delta"
+                    style="max-width:150px; max-height:70px; object-fit:contain;">
+            </div>
+        <?php } ?>
         <center>
             <u><?php echo $d['supervisor_nama'] ?></u><br>
             <?php echo $d['supervisor_nip'] ?>
@@ -209,26 +280,61 @@
         <th colspan="5" style="text-align: left;">VIII. KEPUTUASN PEJABAT YANG MEMEBERIKAN CUTI</th>        
     </tr>
     <tr>
-     <td>DISETUJUI</td>
+     <td>DISETUJUI****</td>
      <td>PERUBAHAN****</td>
      <td>DITANGGUHKAN****</td>
      <td>TIDAK DISETUJUI****</td>
  </tr>
  <tr>
-    <td><br></td>    
+    <td>
+        <?php
+        if ($d['manajer_status']=="Terima"){
+            ?>
+                <center>&#10003;</center>
+            <?php
+        }else{
+            ?>
+            <br>
+            <?php
+        }
+        ?>
+    </td>    
     <td></td>    
     <td></td>    
-    <td></td>    
+    <td>
+        <?php
+        if ($d['manajer_status']=="Tolak"){
+            ?>
+                <center>&#10003;</center>
+            <?php
+        }else{
+            ?>
+            <br>
+            <?php
+        }
+        ?>
+    </td>    
 </tr>
 
 <tr>
-    <td colspan="3"></td>
+    <td colspan="3"><?php echo $d['manajer_keterangan'] ?></td>
     <td>
         <center>Manajer Divisi <?php echo $d['divisi_nama'] ?></center>
-        <br>
-        <br>
-        <br>
-        <br>
+        <?php if($d['manajer_tanda_tangan']!=""){ ?>
+            <div style="width:200px; height:100px; 
+                        display:flex; align-items:center; justify-content:center; margin:auto;">
+                <img src="../gambar/tanda_tangan/<?php echo $d['manajer_tanda_tangan'] ?>" 
+                    alt="Tanda Tangan"
+                    style="max-width:180px; max-height:90px; object-fit:contain;">
+            </div>
+        <?php }else{ ?>
+            <div style="width:200px; height:100px; 
+                        display:flex; align-items:center; justify-content:center; margin:auto;">
+                <img src="../dist/img/logo_delta.png" 
+                    alt="Logo Delta"
+                    style="max-width:150px; max-height:70px; object-fit:contain;">
+            </div>
+        <?php } ?>
         <center>
             <u><?php echo $d['manajer_nama'] ?></u><br>
             <?php echo $d['manajer_nip'] ?>
@@ -246,7 +352,7 @@
 <ol class="d">
     <li>* Coret yang tidak perlu</li>
     <li>** Pilih salah satu dengan memberikan tanda centang</li>
-    <li>*** Diisi oleh pejabat yang menangani bidang kepegawaian sebelum PNS mengajukan cuti</li>
+    <li>*** Diisi oleh pejabat yang menangani bidang kepegawaian sebelum karyawan mengajukan cuti</li>
     <li>**** Diberi tanda centang oleh atasannya</li>
     <li>N Cuti tahun yang berjalan</li>
     <li>N-1 Sisa Cuti 1 tahun sebelumnya</li>
