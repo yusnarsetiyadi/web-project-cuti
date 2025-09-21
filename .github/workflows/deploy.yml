@@ -47,3 +47,8 @@ jobs:
           port: ${{ secrets.VPS_PORT }}
           script: |
             sed -i "s|mysqli_connect.*;|${{ secrets.DB_CONNECTION }};|" /var/www/html/deploy/projectcuti/koneksi.php
+            sed -i "s|\"smtp_host\" => \".*\"|\"smtp_host\" => \"${{ secrets.SMTP_HOST }}\"|g" /var/www/html/deploy/projectcuti/mailer.php
+            sed -i "s|\"smtp_port\" => \".*\"|\"smtp_port\" => \"${{ secrets.SMTP_PORT }}\"|g" /var/www/html/deploy/projectcuti/mailer.php
+            sed -i "s|\"auth_email\" => \".*\"|\"auth_email\" => \"${{ secrets.SMTP_EMAIL }}\"|g" /var/www/html/deploy/projectcuti/mailer.php
+            sed -i "s|\"auth_password\" => \".*\"|\"auth_password\" => \"${{ secrets.SMTP_PASSWORD }}\"|g" /var/www/html/deploy/projectcuti/mailer.php
+            sed -i "s|\"sender_name\" => \".*\"|\"sender_name\" => \"${{ secrets.SMTP_SENDER_NAME }}\"|g" /var/www/html/deploy/projectcuti/mailer.php

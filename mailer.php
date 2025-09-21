@@ -5,11 +5,11 @@ function sendEmail($recipient, $subject, $bodyHtml) {
 
     // Data form-data
     $data = [
-        "smtp_host"     => "smtp.gmail.com",
-        "smtp_port"     => "465",
-        "auth_email"    => "obetelman@gmail.com",
-        "auth_password" => "wdvo edur qpff nfiw",
-        "sender_name"   => "Admin Sistem Pengajuan Cuti <obetelman@gmail.com>",
+        "smtp_host" => "",
+        "smtp_port" => "",
+        "auth_email" => "",
+        "auth_password" => "",
+        "sender_name" => "",
         "recipient"     => $recipient,
         "subject"       => $subject,
         "body_html"     => $bodyHtml
