@@ -4,6 +4,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Manajer - Aplikasi Pengajuan Cuti</title>  
+	<link rel="icon" type="image/png" href="favicon.png">
 	<link rel="stylesheet" href="../assets/bower_components/bootstrap/dist/css/bootstrap.min.css">
 
 </head>
