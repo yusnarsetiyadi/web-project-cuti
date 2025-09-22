@@ -35,7 +35,7 @@
           <div class="card-body">
             <div class="row">
               <div class="col-md-6">
-              	<form action="karyawan_act.php" method="POST">
+              	<form action="karyawan_act.php" method="POST" enctype="multipart/form-data">
               		<div class="form-group">
               			<label>NIP</label>
               			<input type="number" name="nip" class="form-control" required placeholder="Misal : 11121***">
