@@ -40,6 +40,8 @@ jobs:
             sed -i "s|\"sender_name\" => \".*\"|\"sender_name\" => \"${{ secrets.SMTP_SENDER_NAME }}\"|g" /var/www/html/deploy/projectcuti/mailer.php
 
             echo "=== Set ownership & permission ==="
+            sudo chown www-data:www-data /var/www/html/deploy/projectcuti
+            sudo chmod 755 /var/www/html/deploy/projectcuti
             for dir in build dist gambar plugins; do
               sudo chown -R www-data:www-data /var/www/html/deploy/projectcuti/$dir
               sudo chmod -R 755 /var/www/html/deploy/projectcuti/$dir
