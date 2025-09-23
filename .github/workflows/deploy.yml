@@ -13,21 +13,6 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Deploy to VPS
-        uses: appleboy/ssh-action@v1.0.3
-        with:
-          host: ${{ secrets.VPS_HOST }}
-          username: ${{ secrets.VPS_USER }}
-          password: ${{ secrets.VPS_PASS }}
-          port: ${{ secrets.VPS_PORT }}
-          script: |
-            echo "=== Remove old files ==="
-            rm -rf /var/www/html/deploy/projectcuti/*
-
-            echo "=== Upload new files ==="
-            mkdir -p /var/www/html/deploy/projectcuti
-            exit
-
       - name: Upload files to VPS
         uses: appleboy/scp-action@v0.1.7
         with:
@@ -38,7 +23,7 @@ jobs:
           source: "./"
           target: "/var/www/html/deploy/projectcuti"
 
-      - name: Update koneksi.php
+      - name: Configure and Set Permissions
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.VPS_HOST }}
@@ -46,9 +31,16 @@ jobs:
           password: ${{ secrets.VPS_PASS }}
           port: ${{ secrets.VPS_PORT }}
           script: |
+            echo "=== Update konfigurasi ==="
             sed -i "s|mysqli_connect.*;|${{ secrets.DB_CONNECTION }};|" /var/www/html/deploy/projectcuti/koneksi.php
             sed -i "s|\"smtp_host\" => \".*\"|\"smtp_host\" => \"${{ secrets.SMTP_HOST }}\"|g" /var/www/html/deploy/projectcuti/mailer.php
             sed -i "s|\"smtp_port\" => \".*\"|\"smtp_port\" => \"${{ secrets.SMTP_PORT }}\"|g" /var/www/html/deploy/projectcuti/mailer.php
             sed -i "s|\"auth_email\" => \".*\"|\"auth_email\" => \"${{ secrets.SMTP_EMAIL }}\"|g" /var/www/html/deploy/projectcuti/mailer.php
             sed -i "s|\"auth_password\" => \".*\"|\"auth_password\" => \"${{ secrets.SMTP_PASSWORD }}\"|g" /var/www/html/deploy/projectcuti/mailer.php
             sed -i "s|\"sender_name\" => \".*\"|\"sender_name\" => \"${{ secrets.SMTP_SENDER_NAME }}\"|g" /var/www/html/deploy/projectcuti/mailer.php
+
+            echo "=== Set ownership & permission ==="
+            for dir in build dist gambar plugins; do
+              sudo chown -R www-data:www-data /var/www/html/deploy/projectcuti/$dir
+              sudo chmod -R 755 /var/www/html/deploy/projectcuti/$dir
+            done
