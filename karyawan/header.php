@@ -45,7 +45,7 @@
           </li>
           
           <li class="nav-item">
-            <a href="jenis_cuti.php" class="nav-link">Sisa Cuti</a>
+            <a href="sisa_cuti.php" class="nav-link">Sisa Cuti</a>
           </li>
           <li class="nav-item">
             <a href="cuti_saya.php" class="nav-link">Cuti Saya</a>
