@@ -14,10 +14,10 @@ $filename = $_FILES['foto']['name'];
 
 if($filename == ""){
 	if($_POST['password']==""){
-		mysqli_query($koneksi,"update user set alamat='$alamat', kontak='$kontak', email='$email' username='$username' where id=$id");
+		mysqli_query($koneksi,"update user set alamat='$alamat', kontak='$kontak', email='$email', username='$username' where id=$id");
 		header("location:index.php?alert=profil");
 	}else{
-		mysqli_query($koneksi,"update user set alamat='$alamat', kontak='$kontak', email='$email' username='$username', password='$password' where id=$id");
+		mysqli_query($koneksi,"update user set alamat='$alamat', kontak='$kontak', email='$email', username='$username', password='$password' where id=$id");
 		header("location:index.php?alert=profil");
 	}
 	
@@ -30,10 +30,10 @@ if($filename == ""){
 		move_uploaded_file($_FILES['foto']['tmp_name'], '../gambar/user/'.$rand.'_'.$filename);
 		$file_gambar = $rand.'_'.$filename;
 		if($_POST['password']==""){
-			mysqli_query($koneksi,"update user set alamat='$alamat', kontak='$kontak', email='$email' username='$username', foto='$file_gambar' where id=$id");
+			mysqli_query($koneksi,"update user set alamat='$alamat', kontak='$kontak', email='$email', username='$username', foto='$file_gambar' where id=$id");
 			header("location:index.php?alert=profil");
 		}else{
-			mysqli_query($koneksi,"update user set alamat='$alamat', kontak='$kontak', email='$email' username='$username', password='$password', foto='$file_gambar' where id=$id");
+			mysqli_query($koneksi,"update user set alamat='$alamat', kontak='$kontak', email='$email', username='$username', password='$password', foto='$file_gambar' where id=$id");
 			header("location:index.php?alert=profil");
 		}
 	}
