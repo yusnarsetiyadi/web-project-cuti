@@ -108,6 +108,15 @@
     <div class="card-body login-card-body">
       <p class="login-box-msg">Login untuk mengelola pengajuan cuti</p>
 
+      <?php if (isset($_GET['alert']) && $_GET['alert'] == 'gagal'): ?>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+          <strong>Login gagal!</strong> Username, password, atau level tidak sesuai.
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      <?php endif; ?>
+
       <form action="index_act.php" method="post">
         <div class="input-group mb-3">
           <input type="text" class="form-control" name="username" placeholder="Username">
