@@ -109,12 +109,13 @@
       <p class="login-box-msg">Login untuk mengelola pengajuan cuti</p>
 
       <?php if (isset($_GET['alert']) && $_GET['alert'] == 'gagal'): ?>
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-          <strong>Login gagal!</strong> Username, password, atau level tidak sesuai.
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
+        <script>
+          alert("Login gagal! Username, password, atau level salah.");
+          if (window.history.replaceState) {
+            const url = window.location.protocol + "//" + window.location.host + window.location.pathname;
+            window.history.replaceState({}, document.title, url);
+          }
+        </script>
       <?php endif; ?>
 
       <form action="index_act.php" method="post">
