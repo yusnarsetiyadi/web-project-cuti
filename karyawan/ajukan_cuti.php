@@ -53,36 +53,30 @@
 												<tr>
 													<th width="1%">Pilih</th>
 													<th>Cuti</th>
-													<th>Sisa Cuti</th>													
+													<th>Sisa Cuti</th>
 												</tr>
 												<?php 
 												$cek = mysqli_query($koneksi,"select * from jenis_cuti");
 												while($c = mysqli_fetch_array($cek)){
-													$idjenis = $c['jenis_cuti_id'];
-													$saya = $_SESSION['id'];
-													?>
-													<tr>
-														<td><input type="radio" name="jenis" value="<?php echo $c['jenis_cuti_id'] ?>" required></td>
-														<td><?php echo $c['jenis_cuti_name'] ?></td>
-														<td>
-															<?php 
-															$xx = mysqli_query($koneksi,"select sum(jumlah_cuti) as total from cuti where jenis_cuti_id=$idjenis and user_id=$saya and manajer_status='Terima'");
-															$x = mysqli_fetch_assoc($xx);
-															$xtotoal = $x['total'];
-															$diberikan = $c['jenis_cuti_jumlah'];
-
-															$sisa = $diberikan-$xtotoal;
-															echo $sisa;
-															?>
-															<input type="hidden" name="sisa" value="<?php echo $sisa ?>">
-														</td>
-
-													</tr>
-													<?php
-												}
+														$idjenis = $c['jenis_cuti_id'];
+														$saya = $_SESSION['id'];
+														$xx = mysqli_query($koneksi,"select sum(jumlah_cuti) as total from cuti where jenis_cuti_id=$idjenis and user_id=$saya and manajer_status='Terima'");
+														$x = mysqli_fetch_assoc($xx);
+														$xtotal = $x['total'];
+														$diberikan = $c['jenis_cuti_jumlah'];
+														$sisa = $diberikan - $xtotal;
 												?>
+												<tr>
+													<td>
+														<input type="radio" name="jenis" value="<?= $idjenis ?>" 
+																data-sisa="<?= $sisa ?>" required>
+													</td>
+													<td><?= $c['jenis_cuti_name'] ?></td>
+													<td><?= $sisa ?></td>
+												</tr>
+												<?php } ?>
 											</table>
-											
+											<input type="hidden" name="sisa" id="sisa">
 										</div>
 										<div class="form-group">
 											<label>Mulai Cuti</label>
@@ -117,5 +111,36 @@
 		</div>    
 	</div>
 </div>
+
+<script>
+	document.addEventListener("DOMContentLoaded", function () {
+		const today = new Date();
+		const tomorrow = new Date(today);
+		tomorrow.setDate(today.getDate() + 1);
+		const minDate = tomorrow.toISOString().split("T")[0];
+		const mulai = document.querySelector('input[name="mulai"]');
+		const akhir = document.querySelector('input[name="akhir"]');
+		mulai.min = minDate;
+		akhir.disabled = true;
+		mulai.addEventListener("change", function () {
+			akhir.disabled = false;
+			const startDate = new Date(this.value);
+			const minEndDate = startDate.toISOString().split("T")[0];
+			akhir.min = minEndDate;
+			if (akhir.value && akhir.value < minEndDate) {
+				akhir.value = "";
+			}
+		});
+
+		const radios = document.querySelectorAll('input[name="jenis"]');
+		const sisaInput = document.getElementById('sisa');
+		radios.forEach(radio => {
+			radio.addEventListener('change', function() {
+				sisaInput.value = this.dataset.sisa;
+				console.log('Sisa cuti terpilih:', sisaInput.value);
+			});
+		});
+	});
+</script>
 
 <?php include'footer.php' ?>
