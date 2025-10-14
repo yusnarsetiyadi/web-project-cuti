@@ -36,6 +36,15 @@
 									</div>
 									<?php
 								}
+								if($_GET['alert']=="gagal_batas_cuti"){
+									?>
+									<div class="alert alert-danger alert-dismissible">
+										<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+										<h5><i class="icon fas fa-info"></i> Alert!</h5>
+										Permintaan cuti gagal, sudah melebihi batas cuti dalam sehari pada divisi anda di tanggal <?= $_GET['info'] ?>.
+									</div>
+									<?php
+								}
 							}
 
 							?>

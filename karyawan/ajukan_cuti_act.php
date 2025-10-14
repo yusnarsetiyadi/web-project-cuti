@@ -26,6 +26,32 @@ if ($jumlah_hari > $sisa) {
     exit;
 }
 
+$tanggal_mulai = new DateTime($mulai);
+$tanggal_akhir = new DateTime($akhir);
+$valid = true;
+$tglBentrok = '';
+while ($tanggal_mulai <= $tanggal_akhir) {
+    $tgl = $tanggal_mulai->format('Y-m-d');
+    $query = mysqli_query($koneksi, "
+        SELECT COUNT(*) AS total_cuti
+        FROM cuti
+        WHERE divisi_id = $divisi
+          AND manajer_status = 'Terima'
+          AND ('$tgl' BETWEEN tanggal_mulai AND tanggal_selesai)
+    ");
+    $data = mysqli_fetch_assoc($query);
+    if ($data['total_cuti'] > 3) {
+        $valid = false;
+        $tglBentrok = $tgl;
+        break;
+    }
+    $tanggal_mulai->modify('+1 day');
+}
+if (!$valid) {
+    header("location:ajukan_cuti.php?alert=gagal_batas_cuti&info=$tglBentrok");
+    exit;
+}
+
 mysqli_query($koneksi, "
     INSERT INTO cuti 
     (cuti_id, divisi_id, jenis_cuti_id, user_id, tanggal_cuti, tanggal_mulai, tanggal_selesai, jumlah_cuti, alasan_cuti, alamat_cuti) 
