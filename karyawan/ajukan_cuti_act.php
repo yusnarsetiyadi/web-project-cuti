@@ -40,7 +40,7 @@ while ($tanggal_mulai <= $tanggal_akhir) {
           AND ('$tgl' BETWEEN tanggal_mulai AND tanggal_selesai)
     ");
     $data = mysqli_fetch_assoc($query);
-    if ($data['total_cuti'] > 3) {
+    if ($data['total_cuti'] >= 3) {
         $valid = false;
         $tglBentrok = $tgl;
         break;
