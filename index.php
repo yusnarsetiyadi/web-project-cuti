@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Aplikasi Pengajuan Cuti Karyawan - jundi</title>  
+  <title>Aplikasi Pengajuan Cuti Karyawan</title>  
   <link rel="icon" type="image/png" href="favicon.png">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">  
